@@ -1,0 +1,383 @@
+
+:root {
+    --color-background: #000000;
+    --color-foreground: #EAEAEA;
+    --color-primary: #2141e2;
+    --color-secondary: #888888;
+    --color-subtle: #222222;
+    --color-border: #333333;
+
+    /* Tipografi */
+    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-size-base: 16px;
+    --line-height-base: 1.6;
+
+    /* Boşluk Sistemi (8px Izgarası) */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+    --spacing-xxl: 64px;
+
+    /* Diğer Değişkenler */.btn {
+    /* Temel Buton Stilleri */
+    background-color: var(--color-primary);
+    color: #FFFFFF;
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: none; /* Kenarlık istemiyoruz, glow efekti onun yerini alacak */
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    
+    /* ALışılmadık Hover Efekti için Hazırlık */
+    background-position: center;
+    
+    /* BAŞLANGIÇ GLOW'U: Başlangıçta görünmez bir box-shadow tanımlıyoruz */
+    box-shadow: 0 0 0px 0px rgba(255, 255, 255, 0); 
+
+    /* GEÇİŞLER: Arka plan ve box-shadow için ayrı geçişler tanımlıyoruz */
+    transition: background 0.6s, box-shadow 0.3s ease-out;
+}
+::selection {
+  background-color: var(--color-primary);
+  color: #FFFFFF; /* Saf beyaz, maksimum kontrast için */
+}
+
+/* Firefox için Ön Ek */
+::-moz-selection {
+  background-color: var(--color-primary);
+  color: #FFFFFF;
+}
+
+.btn:hover {
+    /* Arka Plan Efekti */
+    background: var(--color-primary) radial-gradient(circle, transparent 1%, var(--color-primary) 1%) center/15000%;
+
+    /* YENİ BEYAZ GLOW EFEKTİ */
+    /* 0 0: Gölge merkezde kalsın */
+    /* 15px: Işımanın bulanıklık (blur) yarıçapı */
+    /* 4px: Işımanın yayılma (spread) yarıçapı */
+    /* rgba(255, 255, 255, 0.35): %35 opaklıkta beyaz renk, çok parlamayan zarif bir ışıma için */
+    box-shadow: 0 0 15px 4px rgba(255, 255, 255, 0.35);
+}
+
+.btn:active {
+    /* Tıklanıldığında efektlerin anlık tepki vermesi */
+    background-color: #3a59e8;
+    background-size: 100%;
+    transition: background 0s, box-shadow 0s;
+    
+    /* Tıklanıldığında glow efektini de anlık olarak biraz daha belirgin yapabiliriz */
+    box-shadow: 0 0 20px 6px rgba(255, 255, 255, 0.4);
+}
+    --border-radius: 3px;
+    --transition-speed: 200ms;
+    --site-width: 900px; /* İçeriğin maksimum genişliği */
+}
+
+
+/* 2. Global Sıfırlama ve Temel Stiller
+-------------------------------------------------- */
+
+/* Kutsal Kural: Daha öngörülebilir kutu modeli */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    /* Sayfa kaydırmasını daha akıcı hale getirir */
+    scroll-behavior: smooth; 
+}
+
+body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
+    -webkit-font-smoothing: antialiased; /* Fontları daha keskin gösterir */
+    text-rendering: optimizeLegibility;
+}
+
+/* Temel Link Stilleri */
+a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color var(--transition-speed) ease;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Duyarlı Görseller */
+img, video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Temel Başlık Stilleri */
+h1, h2, h3, h4, h5, h6 {
+    line-height: 1.2;
+    margin-bottom: var(--spacing-md);
+    font-weight: 600; /* Biraz daha kalın başlıklar */
+}
+
+p {
+    margin-bottom: var(--spacing-md);
+}
+.container {
+    width: 100%;
+    max-width: var(--site-width); /* :root'ta 900px olarak tanımlamıştık */
+    margin-left: auto;
+    margin-right: auto;
+    padding: var(--spacing-xl) var(--spacing-lg); /* Üst/alt ve sağ/sol boşluklar */
+}
+.btn {
+    /* Temel Buton Stilleri */
+    background-color: var(--color-primary);
+    color: #FFFFFF;
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: none; /* Kenarlık istemiyoruz, glow efekti onun yerini alacak */
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    
+    /* ALışılmadık Hover Efekti için Hazırlık */
+    background-position: center;
+    
+    /* BAŞLANGIÇ GLOW'U: Başlangıçta görünmez bir box-shadow tanımlıyoruz */
+    box-shadow: 0 0 0px 0px rgba(255, 255, 255, 0); 
+
+    /* GEÇİŞLER: Arka plan ve box-shadow için ayrı geçişler tanımlıyoruz */
+    transition: background 0.6s, box-shadow 0.3s ease-out;
+}
+
+.btn:hover {
+    /* Arka Plan Efekti */
+    background: var(--color-primary) radial-gradient(circle, transparent 1%, var(--color-primary) 1%) center/15000%;
+    box-shadow: 0 0 15px 4px rgba(255, 255, 255, 0.35);
+}
+
+.btn:active {
+    background-color: #3a59e8;
+    background-size: 100%;
+    transition: background 0s, box-shadow 0s;
+    
+    box-shadow: 0 0 20px 6px rgba(255, 255, 255, 0.4);
+}
+/* 4. Site Header Stilleri
+-------------------------------------------------- */
+
+.site-header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: rgba(17, 17, 17, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between; /* Sol ve Sağ grupları iki uca yaslar */
+    align-items: center;
+    height: 64px;
+    
+    /* YENİ EKLENENLER: */
+    max-width: 1200px; /* Header içeriği için daha geniş bir alan */
+    width: 100%; /* Genişliğin %100'ünü kullan */
+    margin: 0 auto; /* Bu geniş alanı ortala */
+    padding: 0 var(--spacing-xl); /* Sağ ve soldan 32px boşluk bırak */
+}
+
+/* YENİ: Sol Taraf Grubu İçin Hizalama */
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+/* Logo Stilleri (Güncellendi) */
+.logo a {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-foreground);
+    text-decoration: none;
+    display: block; 
+}
+.logo sup {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    position: relative;
+    top: -5px;
+    left: -2px;
+}
+
+/* Navigasyon Stilleri (Değişiklik yok) */
+.main-nav ul {
+    display: flex;
+    list-style: none;
+}
+
+.main-nav a {
+    display: block;
+    padding: var(--spacing-sm) var(--spacing-md);
+    color: var(--color-secondary);
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: var(--border-radius);
+    transition: color 0.2s ease-in-out;
+}
+
+.main-nav a:hover {
+    color: var(--color-foreground);
+}
+
+/* Kullanıcı Profili Stilleri (Değişiklik yok) */
+.user-profile {
+    width: 36px;
+    height: 36px;
+}
+
+.user-profile img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.user-profile img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.2);
+}
+.site-footer {
+    padding: var(--spacing-xxl) 0;
+    margin-top: var(--spacing-xxl);
+    border-top: 1px solid var(--color-border);
+    
+    /* -- GÜNCELLEME: Camsı Efekt -- */
+    background-color: rgba(17, 17, 17, 0.5); /* Hafif şeffaf arka plan */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.footer-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 var(--spacing-xl);
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 2fr;
+    gap: var(--spacing-xl);
+}
+
+.footer-column h4 {
+    color: var(--color-foreground);
+    font-weight: 600;
+    margin-bottom: var(--spacing-md);
+}
+
+.footer-column ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.footer-column a {
+    color: var(--color-secondary);
+    text-decoration: none;
+    /* -- GÜNCELLEME: Hafif yukarı kayma efekti için transform ekledik -- */
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.footer-column a:hover {
+    color: var(--color-foreground);
+    /* -- GÜNCELLEME: Alt çizgi kaldırıldı, yerine hafif yukarı kayma eklendi -- */
+    text-decoration: none;
+    transform: translateY(-2px);
+}
+
+.footer-logo {
+    font-size: 1.5rem !important;
+    font-weight: 700 !important;
+    color: var(--color-foreground) !important;
+    text-decoration: none !important;
+}
+
+.footer-logo:hover {
+    transform: none; /* Logonun yukarı kaymasını engelle */
+}
+
+.footer-logo sup {
+    font-size: 0.9rem;
+    color: var(--color-primary);
+}
+
+.footer-description {
+    margin-top: var(--spacing-md);
+    color: var(--color-secondary);
+    line-height: 1.5;
+    max-width: 300px;
+}
+
+/* Newsletter Form Stilleri */
+#footer-newsletter p {
+    color: var(--color-secondary);
+    margin-bottom: var(--spacing-md);
+}
+
+.newsletter-form {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.newsletter-form input[type="email"] {
+    flex-grow: 1;
+    background-color: var(--color-subtle);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-sm) var(--spacing-md);
+    color: var(--color-foreground);
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.newsletter-form input[type="email"]:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(33, 65, 226, 0.3);
+}
+
+/* -- GÜNCELLEME: Bülten butonunu genişletme -- */
+.newsletter-form .btn {
+    min-width: 120px; /* Butonun minimum genişliği */
+    justify-content: center; /* İçeriği ortalar (eğer buton flex ise) */
+}
+
+/* Footer'ın en altındaki telif hakkı bölümü */
+.footer-bottom {
+    margin-top: var(--spacing-xxl);
+    padding-top: var(--spacing-xl);
+    border-top: 1px solid var(--color-border);
+    text-align: center;
+    color: var(--color-secondary);
+    font-size: 0.9rem;
+}
