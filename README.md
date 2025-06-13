@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="img/user.jpg" width="96" >
+  <img src="img/user.jpg" width="96" height="96">
 </p>
 
 <h1 align="center">ayberk.one <sup>beta</sup> 🚀</h1>
