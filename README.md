@@ -2,13 +2,12 @@
   <img src="img/user.jpg" width="96" height="96">
 </p>
 
-<h1 align="center">ayberk.one <sup>beta</sup> 🚀</h1>
+<h1 align="center">ayberk.one <sup>beta</sup></h1>
 
 ---
 
 ## ✨ Özellikler
 
-- 📓 **Kişisel notlar & loglar:** Zuck’s notes havası, tam benim “vibe’ım”.
 - 🌓 **Ultra-minimal UI:** Göz yormayan yapı.
 - ⚡ **Hızlı ve hafif:** Vanilla PHP + temiz HTML/CSS.
 - 🌍 **Çoklu tema:** 3 tema — classic, modern, light.
