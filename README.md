@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://i.hizliresim.com/o3ykhbs.jpg" width="96" alt="Ayberk Logo">
+  <img src="img/user.jpg" width="96" >
 </p>
 
 <h1 align="center">ayberk.one <sup>beta</sup> 🚀</h1>
