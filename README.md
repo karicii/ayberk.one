@@ -19,6 +19,6 @@
 ## 🚀 Kurulum
 
 ```bash
-git clone https://github.com/ayberkarici/ayberk.one.git
+git clone https://github.com/karicii/ayberk.one.git
 cd ayberk.one
 php -S localhost:8090
