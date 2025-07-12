@@ -1,0 +1,25 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # Redirect to remove trailing slash from non-directories
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)/$ /$1 [L,R=301]
+
+    # Block access to sensitive files
+    RewriteRule ^(.*/)?(composer\.json|composer\.lock|package\.json|package-lock\.json|\.env|\.git|\.gitignore|README\.md)$ - [F,L,NC]
+
+    # Block access to includes directory
+    RewriteRule ^includes/.*$ - [F,L,NC]
+</IfModule>
+
+<IfModule mod_headers.c>
+    # Add security headers
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self';"
+</IfModule>
+
+# Disable directory listing
+Options -Indexes
