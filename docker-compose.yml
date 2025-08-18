@@ -1,0 +1,31 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: ./docker/php/Dockerfile
+    container_name: ayberk_one_web
+    ports:
+      - "8461:80"
+    volumes:
+      - ./:/var/www/html
+      - ./docker/apache/default.conf:/etc/apache2/sites-available/000-default.conf
+    depends_on:
+      - db
+    restart: unless-stopped
+
+  db:
+    image: mariadb:10.6
+    container_name: ayberk_one_db
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "33842:3306"
+    restart: unless-stopped
+
+volumes:
+  db_data:

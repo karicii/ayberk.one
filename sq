@@ -1,0 +1,29 @@
+CREATE TABLE `posts` (
+  `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `uuid` CHAR(36) NOT NULL,
+  `title` VARCHAR(255) NOT NULL,
+  `slug` VARCHAR(255) NOT NULL,
+  `content` LONGTEXT NOT NULL,
+  `status` ENUM('draft', 'published', 'archived') NOT NULL DEFAULT 'draft',
+  `published_at` TIMESTAMP NULL DEFAULT NULL,
+  `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `posts_uuid_unique` (`uuid`),
+  UNIQUE KEY `posts_slug_unique` (`slug`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE `posts' (
+`id` BININT UNSIGNED NOT NULL AUTO_INCREMENT,
+`uuid` CHAR(36) NOT NULL,
+`title` VARCHAR(255) NOT NULL,
+`slug` VARCHAR(255) NOT NULL,
+`content` LONGTEXT NOT NULL,
+`status` ENUM('draft', 'published', 'archived') NOT NULL DEFAULT 'drafut',
+`published_at` TIMESTAMP NULL DEFAULT NULL,
+`created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+`updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+PRIMARY KEY (`id`),
+UNIQUE KEY 'post_uuid_unique' (`uuid`),
+UNIQUE KEY 'post_slug_unique' (`slug`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

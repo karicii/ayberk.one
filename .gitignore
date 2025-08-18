@@ -1,0 +1,8 @@
+# Hassas ortam değişkenleri
+.env
+
+# Composer bağımlılıkları (gelecek için)
+/vendor/
+
+# Docker tarafından oluşturulan veritabanı verileri
+db_data/
