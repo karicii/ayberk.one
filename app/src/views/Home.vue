@@ -3,7 +3,7 @@
         <h1>Blog Yazıları</h1>
         <div v-if="loading">Yükleniyor...</div>
         <div v-if="error" class="error">{{ error }}</div>
-    <ul v-if="posts.lenght">
+    <ul v-if="posts.length">
         <li v-for="post in posts" :key="post.slug">
         <router-link :to="{ name: 'PostDetail', params: { slug: post.slug }}">
         <h2>{{ post.title }}</h2>
