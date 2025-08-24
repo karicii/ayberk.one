@@ -17,7 +17,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue-router';
+import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import api from '../services/api';
 
@@ -28,7 +28,7 @@ const router = useRouter();
 
 const handleLogin = async () => {
     try{
-        erorr.value= null;
+        error.value= null;
         const response = await api.login({email: email.value, password: password.value});
         localStorage.setItem('token', response.data.token);
         router.push('/admin')

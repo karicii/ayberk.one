@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-const apiClient = axiost.create({
-    baseUrl: 'http://localhost:8461/api', 
+const apiClient = axios.create({
+    baseURL: 'http://localhost:8461/api', 
     header: {
         'Content-Type': 'applicatio/json',
     },
@@ -33,7 +33,10 @@ export default {
     createPost(data) {
         return apiClient.post('/posts', data);
     },
-    updatePosts(slug, data) {
+    updatePost(slug, data) {
         return apiClient.put(`/posts/${slug}`, data);
     },
+    deletePost(slug) {
+        return apiClienct.delete(`/posts/${slug}`);
+    }
 };

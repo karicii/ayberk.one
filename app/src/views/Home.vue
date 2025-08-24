@@ -3,7 +3,7 @@
         <h1>Blog Yazıları</h1>
         <div v-if="loading">Yükleniyor...</div>
         <div v-if="error" class="error">{{ error }}</div>
-    <ul v-if="post-lenght">
+    <ul v-if="post.lenght">
         <li v-for="post in posts" :key="post.slug">
         <router-link :to="{ name: 'PostDetail', params: { slug: post.slug }}">
         <h2>{{ post.title }}</h2>
@@ -38,7 +38,7 @@ onMounted(async ()=> {
 });
 </script>
 
-<stlye scoped>
+<style scoped>
     ul {
         list-style:none;
         padding:0;
@@ -57,4 +57,4 @@ onMounted(async ()=> {
     .error {
         color:red;
     }
-</stlye>
+</style>

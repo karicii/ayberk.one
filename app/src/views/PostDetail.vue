@@ -3,16 +3,16 @@
         <div v-if="loading">Yükleniyor...</div>
         <div v-if="error" class="error">{{ error }}</div>
         <article v-if="post">
-            <h1>{{ queuePostFlushCb.title }}</h1>
+            <h1>{{ post.title }}</h1>
             <p><em>Yayınlanma: {{ new Date(post.published_at).toLocaleDateString() }}</em></p>
             <div v-html="queuePostFlushCb.content"></div>
         </article>
     </div>
 </template>
 <script setup> 
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
-import api from '../servies/api';
+import api from '../services/api';
 
 const route = useRoute();
 const post = ref(null);

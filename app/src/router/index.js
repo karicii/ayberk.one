@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory  } from 'vue-router';
 import Home from '../views/Home.vue';
-import PostDetail from '../views/PostDEtail.vue';
+import PostDetail from '../views/PostDetail.vue';
 import Login from '../views/Login.vue';
 import AdminDashboard from '../views/AdminDashboard.vue';
 
@@ -11,7 +11,7 @@ const routes = [
     component: Home,
 },
 {
-    path: 'post/:slug',
+    path: '/post/:slug',
     name: 'PostDetail',
     component: PostDetail,
     props: true,
@@ -22,11 +22,12 @@ const routes = [
     component: Login,
 },
 {
-    path: 'admin',
+    path: '&admin',
     name: 'AdminDashboard',
     component: AdminDashboard,
     beforeEnter: (to, from, next) => {
         if (!localStorage.getItem('token')) {
+            next({name: 'Login'});
         } else {
             next();
         }

@@ -2,7 +2,7 @@
 <div id="app">
 <nav>
 <router-link to="/">Anasayfa</router-link> |
-<rouer-link v-if="!isLoggedIn" to="/login">Giriş Yap</rouer-link>
+<router-link v-if="!isLoggedIn" to="/login">Giriş Yap</router-link>
 <router-link v-if="isLoggedIn" to="/admin">Yönetim Paneli</router-link>
 <a href="#" v-if="isLoggedIn" @click.prevent="logout">Çıkış Yap</a>
 </nav>
