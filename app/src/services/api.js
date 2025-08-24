@@ -37,6 +37,6 @@ export default {
         return apiClient.put(`/posts/${slug}`, data);
     },
     deletePost(slug) {
-        return apiClienct.delete(`/posts/${slug}`);
+        return apiClient.delete(`/posts/${slug}`);
     }
 };

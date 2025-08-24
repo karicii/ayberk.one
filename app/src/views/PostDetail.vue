@@ -5,13 +5,13 @@
         <article v-if="post">
             <h1>{{ post.title }}</h1>
             <p><em>Yayınlanma: {{ new Date(post.published_at).toLocaleDateString() }}</em></p>
-            <div v-html="queuePostFlushCb.content"></div>
+            <div v-html="post.content"></div>
         </article>
     </div>
 </template>
 <script setup> 
 import { ref, onMounted } from 'vue';
-import { useRouter } from 'vue-router';
+import { useRoute } from 'vue-router';
 import api from '../services/api';
 
 const route = useRoute();

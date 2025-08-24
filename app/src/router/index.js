@@ -22,7 +22,7 @@ const routes = [
     component: Login,
 },
 {
-    path: '&admin',
+    path: '/admin',
     name: 'AdminDashboard',
     component: AdminDashboard,
     beforeEnter: (to, from, next) => {
