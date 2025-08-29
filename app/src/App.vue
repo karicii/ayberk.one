@@ -29,15 +29,5 @@ router.push('/login');
 </script>
 
 <style> 
-nav {
-  padding: 20px;
-  background-color: #f2f2f2;
-  text-align:center;
-}
-nav a {
-  margin: 0 10px;
-  text-decoration:none;
-  color:#333;
-  font-weight: bold;
-}
+
 </style>
