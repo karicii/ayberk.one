@@ -67,7 +67,6 @@ class postRepo
         }
     }
 
-    // YENİ METOT ARTIK SINIFIN İÇİNDE
     public function create(array $data): string|false 
     {
         $query = "
@@ -95,6 +94,52 @@ class postRepo
             return $this->connection->lastInsertId();
         } catch (PDOException $e) {
             error_log('postRepo Create ERR: ' . $e->getMessage());
+            return false;
+        }
+    }
+
+    // --- BU İKİ FONKSİYON SENDE EKSİK ---
+    public function update(string $slug, array $data): bool 
+    {
+        $query = "
+            UPDATE posts
+            SET 
+                title = :title,
+                slug = :new_slug,
+                content = :content,
+                status = :status
+            WHERE
+                slug = :slug
+        ";
+
+        try {
+            $stmt = $this->connection->prepare($query);
+
+            $stmt->bindParam(':title', $data['title']);
+            $stmt->bindParam(':new_slug', $data['slug']);
+            $stmt->bindParam(':content', $data['content']);
+            $status = $data['status'] ?? 'published';
+            $stmt->bindParam(':status', $status);
+            $stmt->bindParam(':slug', $slug);
+
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            error_log('postRepo Update ERR: ' . $e->getMessage());
+            return false;
+        }
+    }
+
+    public function delete(string $slug): bool 
+    {
+        $query = "DELETE FROM posts WHERE slug = :slug";
+        
+        try {
+            $stmt = $this->connection->prepare($query);
+            $stmt->bindParam(':slug', $slug);
+
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            error_log('postRepo Delete ERR: ' . $e->getMessage());
             return false;
         }
     }

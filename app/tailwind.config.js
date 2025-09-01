@@ -1,18 +1,17 @@
 import defaultTheme from 'tailwindcss/defaultTheme';
 
-
-/** @type {import('tailwindcss'.Config)} */
+/** @type {import('tailwindcss').Config} */
 export default {
-    content: [
-        "./index.html",
-        "./src/**/*.{vue,js,ts,jsx,tsx}",
-    ],
-theme: {
+  content: [
+    "./index.html",
+    "./src/**/*.{vue,js,ts,jsx,tsx}",
+  ],
+  theme: {
     extend: {
-        fontFamily: {
-            sans: ['Inter', ...defaultTheme.fontFamily.sans]
-        },
+      fontFamily: {
+        sans: ['Inter', ...defaultTheme.fontFamily.sans],
+      },
     },
-},
-plugins: [],
+  },
+  plugins: [],
 }
