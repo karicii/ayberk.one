@@ -5,8 +5,8 @@ declare(strict_types=1);
 session_start();
 
 require BASE_PATH . '/core/functions.php';
+require BASE_PATH . '/core/App.php';
 
-// .env dosyasını yüklemek için basit fonksiyon (bunu config.php'ye taşıyabiliriz)
 function load_env(string $path): void {
     if (!file_exists($path)) { throw new Exception(".env file not found."); }
     $lines = file($path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
@@ -25,6 +25,8 @@ spl_autoload_register(function ($class) {
 
 $config = require BASE_PATH . '/core/config.php';
 $db = new Database($config['database'], $_ENV['DB_USER'], $_ENV['DB_PASS']);
+
+App::bind('database', $db);
 
 $router = require BASE_PATH . '/routes.php';
 $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
