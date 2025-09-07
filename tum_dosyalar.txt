@@ -1,0 +1,33 @@
+.
+├── composer.json
+├── core
+│   ├── bootstrap.php
+│   ├── config.php
+│   ├── Database.php
+│   ├── functions.php
+│   ├── handlers.php
+│   └── router.php
+├── .env
+├── .env.example            
+├── public
+│   ├── admin
+│   ├── assets
+│   │   ├── css
+│   │   │   ├── main.css
+│   │   │   └── post.css
+│   │   └── js
+│   │       ├── app.js
+│   │       └── script.js
+│   ├── .htaccess
+│   └── index.php
+├── templates
+│   ├── 404.php
+│   ├── home.php
+│   ├── partials
+│   │   ├── footer.php
+│   │   └── header.php
+│   ├── post.php
+│   └── posts.php
+└── tum_dosyalar.txt
+
+9 directories, 22 files

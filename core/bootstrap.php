@@ -1,0 +1,31 @@
+<?php
+
+declare(strict_types=1);
+
+require BASE_PATH . '/core/functions.php';
+
+// .env dosyasını yüklemek için basit fonksiyon (bunu config.php'ye taşıyabiliriz)
+function load_env(string $path): void {
+    if (!file_exists($path)) { throw new Exception(".env file not found."); }
+    $lines = file($path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    foreach ($lines as $line) {
+        if (str_starts_with(trim($line), '#')) { continue; }
+        list($name, $value) = explode('=', $line, 2);
+        $_ENV[trim($name)] = trim($value);
+    }
+}
+load_env(BASE_PATH . '/.env');
+
+spl_autoload_register(function ($class) {
+    $class = str_replace('\\', DIRECTORY_SEPARATOR, $class);
+    require BASE_PATH . "/{$class}.php";
+});
+
+$config = require BASE_PATH . '/core/config.php';
+$db = new Database($config['database'], $_ENV['DB_USER'], $_ENV['DB_PASS']);
+
+$router = require BASE_PATH . '/routes.php';
+$uri = parse_url($_SERVER['REQUEST_URI'])['path'];
+$method = $_POST['_method'] ?? $_SERVER['REQUEST_METHOD'];
+
+$router->dispatch($uri, $method);
