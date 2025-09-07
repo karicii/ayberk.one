@@ -13,8 +13,11 @@ if (empty($_POST['body'])) {
 }
 
 if (empty($errors)) {
-    $db->query('INSERT INTO posts(title, body, user_id) VALUES(:title, :body, :user_id)', [
+    $slug = slugify($_POST['title']);
+
+    $db->query('INSERT INTO posts(title, slug, body, user_id) VALUES(:title, :slug, :body, :user_id)', [
         ':title' => $_POST['title'],
+        ':slug' => $slug,
         ':body' => $_POST['body'],
         ':user_id' => 1
     ]);

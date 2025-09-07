@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: ./docker/php-apache
+    container_name: ayberk-one-web
+    ports:
+      - "9898:80"
+    volumes:
+      - ./:/var/www/html
+    # GÜNCELLENMİŞ SATIR: İzinleri daha güçlü bir şekilde ayarla.
+    command: sh -c "chown -R www-data:www-data /var/www/html && chmod -R 755 /var/www/html && apache2-foreground"
+    depends_on:
+      - db
+    restart: unless-stopped
+
+  db:
+    image: mariadb:10.6
+    container_name: ayberk-one-db
+    environment:
+      MARIADB_ROOT_PASSWORD: admin
+      MARIADB_DATABASE: ayberk_one
+      MARIADB_USER: admin
+      MARIADB_PASSWORD: admin
+    volumes:
+      - ./docker/database/init.sql:/docker-entrypoint-initdb.d/init.sql
+    restart: unless-stopped

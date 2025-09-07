@@ -3,6 +3,9 @@
 declare(strict_types=1);
 
 return [
+    'app' => [
+        'url' => $_ENV['APP_URL'] ?? 'http://localhost'
+    ],
     'database' => [
         'host' => $_ENV['DB_HOST'] ?? 'localhost',
         'port' => $_ENV['DB_PORT'] ?? 3306,
