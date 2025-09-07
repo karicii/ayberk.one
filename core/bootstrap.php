@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+session_start();
+
 require BASE_PATH . '/core/functions.php';
 
 // .env dosyasını yüklemek için basit fonksiyon (bunu config.php'ye taşıyabiliriz)
