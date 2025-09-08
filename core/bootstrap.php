@@ -7,7 +7,6 @@ session_start();
 require BASE_PATH . '/core/functions.php';
 require BASE_PATH . '/core/App.php';
 
-// .env dosyasını yüklemek için basit fonksiyon
 function load_env(string $path): void {
     if (!file_exists($path)) { throw new Exception(".env file not found."); }
     $lines = file($path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
@@ -32,7 +31,11 @@ $db = new Database($config['database'], $_ENV['DB_USER'], $_ENV['DB_PASS']);
 App::bind('database', $db);
 
 $router = require BASE_PATH . '/routes.php';
+
 $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
+$uri = trim($uri, '/'); // Başındaki ve sonundaki tüm / işaretlerini kaldır
+$uri = '/' . $uri; 
+
 $method = $_POST['_method'] ?? $_SERVER['REQUEST_METHOD'];
 
 $router->dispatch($uri, $method);

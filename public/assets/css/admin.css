@@ -86,3 +86,37 @@ body {
 
 a.button-view { background-color: var(--admin-success); }
 a.button-edit { background-color: #f39c12; }
+/* --- Admin Formları --- */
+.admin-form {
+    background-color: var(--admin-surface);
+    border: 1px solid var(--admin-border);
+    border-radius: 5px;
+    padding: 2rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.form-group input[type="text"],
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--admin-border);
+    border-radius: 5px;
+    font-size: 15px;
+    font-family: 'Inter', sans-serif;
+}
+
+.form-group input[type="text"]:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--admin-primary);
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
