@@ -133,29 +133,33 @@
     box-shadow: 0 0 0 2px rgba(0, 112, 243, 0.3);
 }
 
-/* --- CKEditor Dark Theme Entegrasyonu --- */
-:root {
-    --ck-color-base-background: var(--color-background);
-    --ck-color-base-border: #333;
-    --ck-color-text: var(--color-primary);
-    --ck-color-button-default-background: var(--color-surface);
-    --ck-color-button-default-hover-background: #2a2a2a;
-    --ck-color-button-on-background: var(--color-accent);
-    --ck-color-button-on-hover-background: rgba(0, 112, 243, 0.8);
-    --ck-color-button-on-color: #fff;
-    --ck-color-toolbar-background: var(--color-surface);
-    --ck-color-toolbar-border: #333;
-    --ck-color-input-background: var(--color-background);
-    --ck-color-input-border: #333;
-    --ck-color-input-text: var(--color-primary);
-    --ck-color-dropdown-panel-background: var(--color-surface);
-    --ck-color-dropdown-panel-border: #333;
-    --ck-color-list-background: var(--color-surface);
+/* --- Quill.js Dark Theme Entegrasyonu --- */
+.ql-toolbar {
+    background: var(--color-surface);
+    border: 1px solid #333 !important;
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
 }
-
-.ck-editor__editable_inline {
-    background: var(--color-background) !important;
-    color: var(--color-primary) !important;
-    min-height: 300px;
-    padding: 0 1rem !important;
+.ql-container {
+    border: 1px solid #333 !important;
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+    color: var(--color-primary);
+    font-family: var(--font-family-sans);
+    font-size: 16px;
+}
+.ql-editor {
+    min-height: 250px;
+}
+.ql-snow .ql-stroke {
+    stroke: var(--color-secondary);
+}
+.ql-snow .ql-picker-label {
+    color: var(--color-secondary);
+}
+.ql-snow .ql-active .ql-stroke {
+    stroke: var(--color-primary);
+}
+.ql-snow .ql-active .ql-fill {
+    fill: var(--color-primary);
 }
