@@ -6,10 +6,10 @@ $db = App::resolve('database');
 global $router;
 $id = $router->params('id');
 
-// Formdan gelen veriyi ve ID'yi al.
-$title = $_POST['title'];
-$body = $_POST['body'];
-$currentUserId = 1;
+// DÜZELTME: Formdan gelen veriyi güvenli bir şekilde al.
+$title = $_POST['title'] ?? null;
+$body = $_POST['body'] ?? null;
+$currentUserId = 1; // Session'dan gelen gerçek kullanıcı ID'si ile değiştirilecek.
 
 // Önce yazının varlığını ve sahipliğini kontrol et.
 $post = $db->query('SELECT * FROM posts WHERE id = :id AND user_id = :user_id', [
@@ -40,7 +40,8 @@ if (empty($errors)) {
         ':body' => $body
     ]);
     
-    header('Location: /'); // Anasayfaya yönlendir
+    // Güncellemeden sonra admin paneline yönlendir.
+    header('Location: /admin');
     exit();
 }
 
@@ -48,6 +49,6 @@ if (empty($errors)) {
 $pageTitle = 'Yazıyı Düzenle';
 view('posts/edit.php', [
     'pageTitle' => $pageTitle,
-    'post' => $post, // Hata durumunda eski post verilerini yolluyoruz.
+    'post' => $post,
     'errors' => $errors
 ]);

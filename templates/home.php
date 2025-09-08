@@ -7,7 +7,7 @@
             <ul class="post-list">
                 <?php foreach ($latestPosts as $post): ?>
                     <li>
-                        <a href="/posts/<?= htmlspecialchars($post['slug'] ?? $post['id']) ?>">
+                        <a href="/posts/<?= htmlspecialchars($post['slug']) ?>">
                             <h3><?= htmlspecialchars($post['title']) ?></h3>
                         </a>
                     </li>

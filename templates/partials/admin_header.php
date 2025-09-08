@@ -9,15 +9,19 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
     
+    <link rel="stylesheet" href="/assets/css/main.css">
     <link rel="stylesheet" href="/assets/css/admin.css">
+
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/ckeditor.js"></script>
 </head>
 <body>
-    <header class="admin-header">
-        <a href="/admin" class="logo">AYBERK.ONE | KONTROL PANELİ</a>
-        <nav class="admin-nav">
-            <form method="POST" action="/logout">
-                <button type="submit" class="logout-button">Çıkış Yap</button>
-            </form>
-        </nav>
-    </header>
-    <main class="admin-container">
+    <div class="container">
+        <header class="admin-header">
+            <a href="/admin" class="logo">AYBERK.ONE | KONTROL PANELİ</a>
+            <nav class="admin-nav">
+                <form method="POST" action="/logout">
+                    <button type="submit" class="button-logout">Çıkış Yap</button>
+                </form>
+            </nav>
+        </header>
+        <main class="site-content">
