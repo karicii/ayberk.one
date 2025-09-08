@@ -2,16 +2,26 @@
 
     <h1><?= $pageTitle ?></h1>
 
-    <form class="admin-form" action="/admin/posts/<?= $post['id'] ?>" method="POST">
+    <form id="post-form" class="admin-form" action="/admin/posts/<?= $post['id'] ?>" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="_method" value="PATCH">
         
         <div class="form-group">
             <label for="title">Başlık</label>
             <input type="text" id="title" name="title" value="<?= htmlspecialchars($post['title'] ?? '') ?>">
         </div>
+
+        <div class="form-group">
+            <label for="post_image">Kapak Görselini Değiştir (İsteğe Bağlı)</label>
+            <input type="file" id="post_image" name="post_image">
+            <?php if (!empty($post['image_path'])): ?>
+                <p style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--color-secondary);">Mevcut görsel: <?= basename($post['image_path']) ?></p>
+            <?php endif; ?>
+        </div>
+
         <div class="form-group">
             <label for="body">İçerik</label>
-            <textarea id="body" name="body" rows="10"><?= htmlspecialchars($post['body'] ?? '') ?></textarea>
+            <div id="editor" style="min-height: 250px;"><?= $post['body'] ?? '' ?></div>
+            <input type="hidden" name="body" id="body-content">
         </div>
         
         <?php if (!empty($errors)): ?>

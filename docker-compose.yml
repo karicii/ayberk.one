@@ -9,9 +9,9 @@ services:
       - "9898:80"
     volumes:
       - ./:/var/www/html
-      # GÜNCELLEME: Bizim ayar dosyamızı, Apache'nin varsayılan sitesinin üzerine yaz.
       - ./docker/php-apache/apache.conf:/etc/apache2/sites-enabled/000-default.conf
-    command: sh -c "chown -R www-data:www-data /var/www/html && apache2-foreground"
+    # GÜNCELLENMİŞ KOMUT: uploads klasörüne açıkça yazma izni ekle
+    command: sh -c "chown -R www-data:www-data /var/www/html && chmod -R 755 /var/www/html && chmod -R 775 /var/www/html/public/uploads && apache2-foreground"
     depends_on:
       db:
         condition: service_healthy

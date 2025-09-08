@@ -10,7 +10,6 @@ $adminEmail = 'mail@ayberk.one';
 $adminPassword = 'COKGUVENCELIBIRSIFRE';
 
 if ($email === $adminEmail && $password === $adminPassword) {
-    // Bilgiler doğru, session'ı başlat.
     $_SESSION['user'] = [
         'id' => 1, // Sabit ID
         'email' => $adminEmail,

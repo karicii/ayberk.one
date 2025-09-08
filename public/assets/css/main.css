@@ -194,3 +194,10 @@ a:hover {
 .post-content code {
     font-family: var(--font-family-mono);
 }
+
+.post-featured-image {
+    width: 100%;
+    height: auto;
+    margin-bottom: 2rem;
+    border-radius: var(--border-radius);
+}

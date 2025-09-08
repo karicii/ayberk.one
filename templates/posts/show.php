@@ -2,6 +2,9 @@
 
     <article class="post">
         <header class="post-header">
+            <?php if (!empty($post['image_path'])): ?>
+                <img src="<?= htmlspecialchars($post['image_path']) ?>" alt="<?= htmlspecialchars($post['title']) ?>" class="post-featured-image">
+            <?php endif; ?>
             <h1 class="post-title"><?= htmlspecialchars($post['title']) ?></h1>
             <p class="post-meta">
                 Yayınlanma Tarihi: 
@@ -12,8 +15,7 @@
         </header>
 
         <div class="post-content">
-            <?php  ?>
-                        <?= $post['body'] ?>
+            <?= $post['body'] ?>
         </div>
     </article>
 
