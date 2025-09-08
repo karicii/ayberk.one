@@ -1,7 +1,7 @@
 </main>
         <footer class="site-footer">
             <div class="footer-content">
-                <p>&copy; <?= date('Y') ?> Ayberk S. Tüm hakları saklıdır.</p>
+                <p>&copy; <?= date('Y') ?> Ayberk Arıcı. Tüm hakları saklıdır.</p>
                 <nav class="social-nav">
                     <ul>
                         <li><a href="https://github.com/ayberk" target="_blank" rel="noopener noreferrer">GitHub</a></li>

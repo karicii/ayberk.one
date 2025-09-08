@@ -7,6 +7,10 @@
     <title><?= isset($pageTitle) ? htmlspecialchars($pageTitle) . ' | Ayberk.one' : 'Ayberk.one' ?></title>
     <meta name="description" content="<?= isset($pageDescription) ? htmlspecialchars($pageDescription) : 'Girişimci, yazılımcı. Web projeleri, SaaS ürünleri ve yazılım tabanlı satış sistemleri üzerine notlar.' ?>">
     
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="/assets/css/main.css">
     
     <?= $jsonLdSchema ?? '' ?>
@@ -14,7 +18,7 @@
 <body>
     <div class="container">
         <header class="site-header">
-            <a href="/" class="logo">Ayberk.one</a>
+            <a href="/" class="logo">AYBERK.ONE</a>
             <nav class="main-nav">
                 <ul>
                     <li><a href="/">Anasayfa</a></li>

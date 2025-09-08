@@ -1,0 +1,88 @@
+:root {
+    --admin-bg: #f4f7fa;
+    --admin-surface: #ffffff;
+    --admin-text: #2c3e50;
+    --admin-border: #dfe7ef;
+    --admin-primary: #3498db;
+    --admin-danger: #e74c3c;
+    --admin-success: #2ecc71;
+}
+
+body {
+    background-color: var(--admin-bg);
+    color: var(--admin-text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 15px;
+}
+
+.admin-container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--admin-surface);
+    padding: 1rem 2rem;
+    border-bottom: 1px solid var(--admin-border);
+    margin-bottom: 2rem;
+}
+
+.admin-header .logo {
+    font-weight: 600;
+    color: var(--admin-text);
+    text-decoration: none;
+}
+
+.admin-nav form { margin: 0; }
+
+.button, button {
+    background-color: var(--admin-primary);
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+}
+
+.button-delete, .logout-button {
+    background-color: var(--admin-danger);
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--admin-surface);
+    border: 1px solid var(--admin-border);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.admin-table th, .admin-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--admin-border);
+}
+
+.admin-table th {
+    background-color: #f9fafb;
+}
+
+.admin-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.actions a, .actions button {
+    margin-right: 5px;
+    font-size: 13px;
+    padding: 5px 10px;
+}
+
+a.button-view { background-color: var(--admin-success); }
+a.button-edit { background-color: #f39c12; }
