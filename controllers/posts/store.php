@@ -15,14 +15,16 @@ if (empty($_POST['body'])) {
 if (empty($errors)) {
     $slug = slugify($_POST['title']);
 
+    // DÜZELTME: user_id'yi sabit '1' yerine, session'dan al.
     $db->query('INSERT INTO posts(title, slug, body, user_id) VALUES(:title, :slug, :body, :user_id)', [
         ':title' => $_POST['title'],
         ':slug' => $slug,
         ':body' => $_POST['body'],
-        ':user_id' => 1
+        ':user_id' => $_SESSION['user']['id'] 
     ]);
 
-    header('Location: /');
+    // Kayıttan sonra anasayfaya değil, admin paneline yönlendirelim.
+    header('Location: /admin');
     exit();
 }
 
