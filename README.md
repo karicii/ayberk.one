@@ -1,28 +1,28 @@
-# 🚀 Ayberk.One - Lightweight PHP CMS
+# Ayberk.One - Lightweight PHP CMS
 
 > Modern, hızlı ve minimalist PHP tabanlı içerik yönetim sistemi
 
-## 🌟 Özellikler | Features
+## Özellikler | Features
 
-### 🇹🇷 Türkçe
-- ⚡ **Hafif ve Hızlı**: Minimum kaynak tüketimi ile maksimum performans
-- 🎨 **Modern Tasarım**: Responsive ve kullanıcı dostu arayüz
-- 📝 **Blog Yönetimi**: Kolay makale oluşturma ve düzenleme
-- 🔐 **Güvenli Admin Panel**: Kullanıcı kimlik doğrulama sistemi
-- 🐳 **Docker Desteği**: Kolay kurulum ve dağıtım
-- 📱 **SEO Dostu**: Otomatik sitemap oluşturma
-- 🛠️ **MVC Mimarisi**: Temiz ve sürdürülebilir kod yapısı
+### Türkçe
+- **Hafif ve Hızlı**: Minimum kaynak tüketimi ile maksimum performans
+- **Modern Tasarım**: Responsive ve kullanıcı dostu arayüz
+- **Blog Yönetimi**: Kolay makale oluşturma ve düzenleme
+- **Güvenli Admin Panel**: Kullanıcı kimlik doğrulama sistemi
+- **Docker Desteği**: Kolay kurulum ve dağıtım
+- **SEO Dostu**: Otomatik sitemap oluşturma
+- **MVC Mimarisi**: Temiz ve sürdürülebilir kod yapısı
 
-### 🇺🇸 English
-- ⚡ **Lightweight & Fast**: Maximum performance with minimal resource usage
-- 🎨 **Modern Design**: Responsive and user-friendly interface
-- 📝 **Blog Management**: Easy article creation and editing
-- 🔐 **Secure Admin Panel**: User authentication system
-- 🐳 **Docker Support**: Easy installation and deployment
-- 📱 **SEO Friendly**: Automatic sitemap generation
-- 🛠️ **MVC Architecture**: Clean and maintainable code structure
+### English
+- **Lightweight & Fast**: Maximum performance with minimal resource usage
+- **Modern Design**: Responsive and user-friendly interface
+- **Blog Management**: Easy article creation and editing
+- **Secure Admin Panel**: User authentication system
+- **Docker Support**: Easy installation and deployment
+- **SEO Friendly**: Automatic sitemap generation
+- **MVC Architecture**: Clean and maintainable code structure
 
-## 🚀 Hızlı Başlangıç | Quick Start
+## Hızlı Başlangıç | Quick Start
 
 ### Docker ile Kurulum | Docker Installation
 
@@ -56,29 +56,29 @@ cp .env.example .env
 # Point Apache/Nginx to public/ directory
 ```
 
-## 📁 Proje Yapısı | Project Structure
+## Proje Yapısı | Project Structure
 
 ```
 ayberk.one/
-├── 🔧 core/                 # Çekirdek sistem dosyaları | Core system files
+├── core/                    # Çekirdek sistem dosyaları | Core system files
 │   ├── App.php              # Uygulama sınıfı | Application class
 │   ├── Router.php           # Yönlendirici | Router
 │   ├── Database.php         # Veritabanı bağlantısı | Database connection
 │   └── config.php           # Yapılandırma | Configuration
-├── 🎮 controllers/          # Kontrolcüler | Controllers
+├── controllers/             # Kontrolcüler | Controllers
 │   ├── auth/                # Kimlik doğrulama | Authentication
 │   └── posts/               # Makale yönetimi | Post management
-├── 🎨 templates/            # Görünüm dosyaları | View files
+├── templates/               # Görünüm dosyaları | View files
 │   ├── partials/            # Parçalı görünümler | Partial views
 │   └── posts/               # Makale şablonları | Post templates
-├── 🌐 public/               # Genel erişilebilir dosyalar | Public files
+├── public/                  # Genel erişilebilir dosyalar | Public files
 │   ├── assets/              # CSS, JS, resimler | CSS, JS, images
 │   └── index.php            # Giriş noktası | Entry point
-├── 🐳 docker/               # Docker yapılandırması | Docker configuration
-└── 📝 routes.php            # Yönlendirme tanımları | Route definitions
+├── docker/                  # Docker yapılandırması | Docker configuration
+└── routes.php               # Yönlendirme tanımları | Route definitions
 ```
 
-## ⚙️ Yapılandırma | Configuration
+## Yapılandırma | Configuration
 
 ### Çevre Değişkenleri | Environment Variables
 
@@ -92,7 +92,7 @@ DB_USER=root
 DB_PASS=password
 ```
 
-## 🔗 API Rotaları | API Routes
+## API Rotaları | API Routes
 
 ### Genel Rotalar | Public Routes
 - `GET /` - Ana sayfa | Homepage
@@ -109,7 +109,7 @@ DB_PASS=password
 - `PATCH /admin/posts/{id}` - Makale güncelle | Update post
 - `DELETE /admin/posts/{id}` - Makale sil | Delete post
 
-## 🛠️ Geliştirme | Development
+## Geliştirme | Development
 
 ### Gereksinimler | Requirements
 - PHP 8.0+
@@ -130,7 +130,7 @@ tail -f storage/logs/app.log
 rm -rf storage/cache/*
 ```
 
-## 🤝 Katkıda Bulunma | Contributing
+## Katkıda Bulunma | Contributing
 
 1. Projeyi fork edin | Fork the project
 2. Feature branch oluşturun | Create a feature branch
@@ -147,26 +147,26 @@ rm -rf storage/cache/*
    ```
 5. Pull Request oluşturun | Create a Pull Request
 
-## 📄 Lisans | License
+## Lisans | License
 
 Bu proje MIT lisansı altında lisanslanmıştır. Detaylar için [LICENSE](LICENSE) dosyasına bakın.
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-## 👨‍💻 Geliştirici | Developer
+## Geliştirici | Developer
 
-**Ayberk Kaya** - [@karicii](https://github.com/karicii)
+**Ayberk Arıcı** - [@karicii](https://github.com/karicii)
 
-## 🌟 Destek | Support
+## Destek | Support
 
-Eğer bu proje işinize yaradıysa, ⭐ vererek destek olabilirsiniz!
+Eğer bu proje işinize yaradıysa, yıldız vererek destek olabilirsiniz!
 
-If this project helped you, please consider giving it a ⭐!
+If this project helped you, please consider giving it a star!
 
 ---
 
 <div align="center">
-  <strong>Ayberk.One ile modern web deneyimi yaşayın! 🚀</strong>
+  <strong>Ayberk.One ile modern web deneyimi yaşayın!</strong>
   <br>
-  <strong>Experience modern web with Ayberk.One! 🚀</strong>
+  <strong>Experience modern web with Ayberk.One!</strong>
 </div>
