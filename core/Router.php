@@ -6,7 +6,7 @@ class Router
 {
     protected array $routes = [];
     protected array $params = [];
-
+    protected $matchedRouteIndex; 
     protected function add(string $method, string $uri, string $controller): self
     {
         $this->routes[] = [

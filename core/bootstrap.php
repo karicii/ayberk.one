@@ -7,6 +7,7 @@ session_start();
 require BASE_PATH . '/core/functions.php';
 require BASE_PATH . '/core/App.php';
 
+// .env dosyasını yüklemek için basit fonksiyon
 function load_env(string $path): void {
     if (!file_exists($path)) { throw new Exception(".env file not found."); }
     $lines = file($path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
@@ -19,8 +20,10 @@ function load_env(string $path): void {
 load_env(BASE_PATH . '/.env');
 
 spl_autoload_register(function ($class) {
-    $class = str_replace('\\', DIRECTORY_SEPARATOR, $class);
-    require BASE_PATH . "/{$class}.php";
+    $class_path = BASE_PATH . '/core/' . $class . '.php';
+    if (file_exists($class_path)) {
+        require $class_path;
+    }
 });
 
 $config = require BASE_PATH . '/core/config.php';

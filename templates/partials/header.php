@@ -12,6 +12,16 @@
     <?= $jsonLdSchema ?? '' ?>
 </head>
 <body>
-    <header>
+    <div class="container">
+        <header class="site-header">
+            <a href="/" class="logo">Ayberk.one</a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="/">Anasayfa</a></li>
+                    <li><a href="/projeler">Projeler</a></li>
+                    <li><a href="/hakkimda">Hakkımda</a></li>
+                    <li><a href="/iletisim">İletişim</a></li>
+                </ul>
+            </nav>
         </header>
-    <main>
+        <main class="site-content">

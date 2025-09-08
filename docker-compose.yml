@@ -9,15 +9,22 @@ services:
       - "9898:80"
     volumes:
       - ./:/var/www/html
-    # GÜNCELLENMİŞ SATIR: İzinleri daha güçlü bir şekilde ayarla.
     command: sh -c "chown -R www-data:www-data /var/www/html && chmod -R 755 /var/www/html && apache2-foreground"
     depends_on:
-      - db
+      db:
+        # DÜZELTME: Sadece 'db' değil, 'db' servisi 'healthy' olana kadar bekle.
+        condition: service_healthy
     restart: unless-stopped
 
   db:
     image: mariadb:10.6
     container_name: ayberk-one-db
+    healthcheck:
+      # DÜZELTME: Veritabanının bağlantı kabul edip etmediğini kontrol et.
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost", "-u", "admin", "-padmin"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     environment:
       MARIADB_ROOT_PASSWORD: admin
       MARIADB_DATABASE: ayberk_one
