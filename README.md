@@ -149,9 +149,9 @@ rm -rf storage/cache/*
 
 ## Lisans | License
 
-Bu proje MIT lisansı altında lisanslanmıştır. Detaylar için [LICENSE](LICENSE) dosyasına bakın.
+Bu proje Apache 2.0 lisansı altında lisanslanmıştır. Detaylar için [LICENSE](LICENSE) dosyasına bakın.
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the Apache 2.0 License. See the [LICENSE](LICENSE) file for details.
 
 ## Geliştirici | Developer
 
@@ -166,7 +166,7 @@ If this project helped you, please consider giving it a star!
 ---
 
 <div align="center">
-  <strong>Ayberk.One ile modern web deneyimi yaşayın!</strong>
+  <strong>Modern ve minimalist PHP CMS</strong>
   <br>
-  <strong>Experience modern web with Ayberk.One!</strong>
+  <strong>Modern and minimalist PHP CMS</strong>
 </div>
