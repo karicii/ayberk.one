@@ -15,8 +15,15 @@ CREATE TABLE posts (
     title VARCHAR(255) NOT NULL,
     slug VARCHAR(255) NOT NULL UNIQUE,
     body TEXT NOT NULL,
-    image_path VARCHAR(255) NULL, -- YENİ SÜTUN
+    image_path VARCHAR(255) NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 ) ENGINE=INNODB;
+
+-- ////////////// YENİ EKLENEN BÖLÜM //////////////
+-- Varsayılan admin kullanıcısını ekle
+-- Şifre burada hash'lenmemiş çünkü login işlemi de hash'siz kontrol ediyor.
+-- Normalde şifrelerin hash'lenerek saklanması gerekir.
+INSERT INTO users (id, username, email, password) VALUES (1, 'ayberk', 'mail@ayberk.one', 'COKGUVENCELIBIRSIFRE');
+-- //////////////////////////////////////////////

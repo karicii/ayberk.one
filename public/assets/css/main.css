@@ -8,7 +8,8 @@
     --font-family-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     --font-family-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
 
-    --content-width: 720px;
+    /* Genişletilmiş içerik genişliği (200px eklendi) */
+    --content-width: 920px;
     --border-radius: 8px;
 }
 
@@ -22,7 +23,7 @@
 body {
     background-color: var(--color-background);
     color: var(--color-primary);
-    font-family: var(--font-family-sans); /* Değişkeni burada kullanıyoruz */
+    font-family: var(--font-family-sans);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
 }
@@ -198,6 +199,31 @@ a:hover {
 .post-featured-image {
     width: 100%;
     height: auto;
+    object-fit: cover;
+    max-height: 450px; /* Yükseklik artırıldı */
     margin-bottom: 2rem;
     border-radius: var(--border-radius);
+    display: block;
+    object-position: center;
+    transition: transform 0.3s ease;
+}
+
+.post-featured-image-container {
+    width: 100%;
+    overflow: hidden;
+    border-radius: var(--border-radius);
+    margin-bottom: 2rem;
+}
+
+.container, 
+.site-header,
+.site-footer,
+.post-container,
+.content-block {
+    max-width: var(--content-width);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    width: 100%;
 }
