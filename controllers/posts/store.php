@@ -4,6 +4,9 @@ authorize();
 
 $db = App::resolve('database');
 
+// ReadingTime sınıfını dahil et
+require_once BASE_PATH . '/core/ReadingTime.php';
+
 $errors = [];
 if (empty($_POST['title'])) {
     $errors[] = 'Başlık alanı zorunludur.';
@@ -32,15 +35,19 @@ if (isset($_FILES['post_image']) && $_FILES['post_image']['error'] === UPLOAD_ER
 
 if (empty($errors)) {
     $slug = slugify($_POST['title']);
+    
+    // Okuma süresini hesapla
+    $readingTime = ReadingTime::calculate($_POST['body']);
 
     $db->query(
-        'INSERT INTO posts(title, slug, body, user_id, image_path) VALUES(:title, :slug, :body, :user_id, :image_path)',
+        'INSERT INTO posts(title, slug, body, user_id, image_path, reading_time) VALUES(:title, :slug, :body, :user_id, :image_path, :reading_time)',
         [
             ':title' => $_POST['title'],
             ':slug' => $slug,
             ':body' => $_POST['body'],
             ':user_id' => $_SESSION['user']['id'],
-            ':image_path' => $imagePath // Görsel yolunu veritabanına ekle
+            ':image_path' => $imagePath, // Görsel yolunu veritabanına ekle
+            ':reading_time' => $readingTime
         ]
     );
 

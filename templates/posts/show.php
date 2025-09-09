@@ -1,5 +1,8 @@
 <?php require(BASE_PATH . '/templates/partials/header.php') ?>
 
+<?php /* ReadingTime sınıfını dahil et */ ?>
+<?php require_once BASE_PATH . '/core/ReadingTime.php'; ?>
+
 <?php /* İçindekiler tablosu doğrudan body içinde, container dışında */ ?>
 
 <div class="post-layout">
@@ -17,6 +20,9 @@
                     <time datetime="<?= date('Y-m-d', strtotime($post['created_at'])) ?>">
                         <?= date('d F Y', strtotime($post['created_at'])) ?>
                     </time>
+                </p>
+                <p class="reading-time-meta">
+                    Okuma Süresi: <?= isset($post['reading_time']) ? $post['reading_time'] . ' dakika' : '1 dakika' ?>
                 </p>
             </header>                                                   
 

@@ -13,7 +13,7 @@ if ($email === $adminEmail && $password === $adminPassword) {
         'username' => 'ayberk'
     ];
 
-    header('Location: /');
+    header('Location: /admin');
     exit();
 }
 

@@ -3,6 +3,9 @@
 authorize();
 
 $db = App::resolve('database');
+
+// ReadingTime sınıfını dahil et
+require_once BASE_PATH . '/core/ReadingTime.php';
 global $router;
 $id = $router->params('id');
 $currentUserId = $_SESSION['user']['id'];
@@ -45,13 +48,17 @@ if (isset($_FILES['post_image']) && $_FILES['post_image']['error'] === UPLOAD_ER
 }
 
 if (empty($errors)) {
+    // Okuma süresini hesapla
+    $readingTime = ReadingTime::calculate($body);
+    
     $db->query(
-        'UPDATE posts SET title = :title, body = :body, image_path = :image_path WHERE id = :id',
+        'UPDATE posts SET title = :title, body = :body, image_path = :image_path, reading_time = :reading_time WHERE id = :id',
         [
             ':id' => $id,
             ':title' => $title,
             ':body' => $body,
-            ':image_path' => $imagePath // Yeni veya mevcut görsel yolunu güncelle
+            ':image_path' => $imagePath, // Yeni veya mevcut görsel yolunu güncelle
+            ':reading_time' => $readingTime
         ]
     );
     

@@ -163,6 +163,14 @@ a:hover {
 .post-meta {
     color: var(--color-secondary);
     font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.reading-time-meta {
+    color: var(--color-secondary);
+    font-size: 0.9rem;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
 }
 
 .post-content {
