@@ -16,6 +16,7 @@
     <?= $jsonLdSchema ?? '' ?>
 </head>
 <body>
+    <!-- İçindekiler tablosu JavaScript ile otomatik oluşturulacak -->
     <div class="container">
         <header class="site-header">
             <a href="/" class="logo">AYBERK.ONE</a>

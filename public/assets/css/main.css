@@ -170,6 +170,44 @@ a:hover {
     line-height: 1.7;
 }
 
+/* Post içindeki tüm görseller için taşma önleme kuralları */
+.post-content img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1.5rem auto;
+    border-radius: var(--border-radius);
+    object-fit: contain;
+}
+
+.post-content figure {
+    margin: 1.5rem 0;
+    text-align: center;
+}
+
+.post-content figure img {
+    margin: 0 auto 0.5rem auto;
+}
+
+.post-content figcaption {
+    font-size: 0.85rem;
+    color: var(--color-secondary);
+    font-style: italic;
+    text-align: center;
+    margin-top: 0.5rem;
+}
+
+/* Video ve iframe'ler için responsive kurallar */
+.post-content video,
+.post-content iframe,
+.post-content embed,
+.post-content object {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1.5rem auto;
+}
+
 .post-content h2 {
     font-size: 1.8rem;
     margin-top: 2.5rem;
@@ -190,10 +228,35 @@ a:hover {
     overflow-x: auto; /* Yatayda kaydırma */
     font-family: var(--font-family-mono);
     font-size: 0.9rem;
+    max-width: 100%; /* Kod bloklarının da taşmamasını sağla */
 }
 
 .post-content code {
     font-family: var(--font-family-mono);
+    word-wrap: break-word; /* Uzun kod satırlarını böl */
+}
+
+/* Tablolar için responsive kurallar */
+.post-content table {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    display: block;
+    white-space: nowrap;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+}
+
+.post-content table td,
+.post-content table th {
+    padding: 0.5rem;
+    border: 1px solid #333;
+    text-align: left;
+}
+
+.post-content table th {
+    background-color: var(--color-surface);
+    font-weight: 600;
 }
 
 .post-featured-image {

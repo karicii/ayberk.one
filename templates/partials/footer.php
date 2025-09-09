@@ -11,6 +11,8 @@
                 </nav>
             </div>
         </footer>
-    </div> <script src="/assets/js/app.js"></script>
+    </div> 
+    <script src="/assets/js/app.js"></script>
+    <script src="/assets/js/toc.js"></script>
 </body>
 </html>
