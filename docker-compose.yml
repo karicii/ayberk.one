@@ -6,12 +6,12 @@ services:
       context: ./docker/php-apache
     container_name: ayberk-one-web
     ports:
-      - "9898:80"
+      - "9899:80"
     volumes:
       - ./:/var/www/html
       - ./docker/php-apache/apache.conf:/etc/apache2/sites-enabled/000-default.conf
-    # GÜNCELLENMİŞ KOMUT: uploads klasörüne açıkça yazma izni ekle
-    command: sh -c "chown -R www-data:www-data /var/www/html && chmod -R 755 /var/www/html && chmod -R 775 /var/www/html/public/uploads && apache2-foreground"
+    # NİHAİ KOMUT: uploads klasörüne açıkça ve zorla en geniş yazma iznini ver
+    command: sh -c "chown -R www-data:www-data /var/www/html && chmod -R 755 /var/www/html && chmod -R 777 /var/www/html/public/uploads && apache2-foreground"
     depends_on:
       db:
         condition: service_healthy
