@@ -16,6 +16,7 @@ $router->patch('/admin/posts/{id}', 'posts/update.php');
 $router->delete('/admin/posts/{id}', 'posts/destroy.php');
 
 $router->get('/admin/messages', 'admin/messages/index.php');
+$router->get('/admin/messages/{id}', 'admin/messages/show.php');
 $router->post('/admin/messages/delete', 'admin/messages/destroy.php');
 
 $router->get('/login', 'auth/create.php');

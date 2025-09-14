@@ -163,3 +163,170 @@
 .ql-snow .ql-active .ql-fill {
     fill: var(--color-primary);
 }
+/* --- Admin Mesajlar Tablosu Stilleri --- */
+.messages-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.messages-table th, .messages-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--color-surface);
+}
+
+.messages-table th {
+    color: var(--color-secondary);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.messages-table tbody tr:hover {
+    background-color: var(--color-surface);
+}
+
+.messages-table td {
+    vertical-align: top; /* İçeriği yukarı hizala */
+    font-size: 0.9rem;
+}
+
+/* Mesaj içeriği için özel stil */
+.messages-table td:nth-child(3) {
+    white-space: pre-wrap; /* Satır sonlarını koru */
+    line-height: 1.5;
+    min-width: 300px;
+}
+
+/* Sil butonu için daha küçük boyut */
+.messages-table .delete-btn {
+    padding: 6px 12px;
+    font-size: 13px;
+    border-color: #e53e3e;
+    color: #e53e3e;
+}
+
+.messages-table .delete-btn:hover {
+    background-color: #e53e3e;
+    border-color: #e53e3e;
+    color: var(--color-primary);
+}
+
+/* Başarı Mesajı Stili */
+.alert.alert-success {
+    background-color: #1A3A2F;
+    border: 1px solid #10a37f;
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    color: #f0fdf4;
+}
+.message-inbox {
+    background-color: var(--color-surface);
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--color-border);
+    overflow: hidden; /* Köşeleri yuvarlak tutmak için */
+}
+
+.message-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--color-border);
+    text-decoration: none;
+    color: var(--color-secondary);
+    transition: background-color var(--transition-fast);
+}
+
+.message-item:last-child {
+    border-bottom: none;
+}
+
+.message-item:hover {
+    background-color: #2a2a2a;
+    cursor: pointer;
+}
+
+.message-sender {
+    font-weight: 600;
+    color: var(--color-primary);
+    width: 200px;
+    flex-shrink: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.message-snippet {
+    flex-grow: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0 1.5rem;
+}
+
+.message-date {
+    font-size: 0.85rem;
+    color: var(--color-muted);
+    flex-shrink: 0;
+}
+
+/* --- Tekil Mesaj Görüntüleme Sayfası --- */
+.message-view {
+    background-color: var(--color-surface);
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--color-border);
+    padding: 2rem;
+}
+
+.message-view-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: 1.5rem;
+}
+
+.message-subject {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.message-meta {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+    color: var(--color-secondary);
+}
+
+.meta-item strong {
+    color: var(--color-primary);
+    display: block;
+    margin-bottom: 0.25rem;
+    font-weight: 600;
+}
+.meta-item .user-agent {
+    font-size: 0.8rem;
+    color: var(--color-muted);
+    word-break: break-all;
+}
+
+
+.message-body {
+    padding: 1.5rem;
+    background-color: var(--color-background);
+    border-radius: var(--border-radius);
+    line-height: 1.7;
+    color: var(--color-primary);
+}
+
+.message-actions {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border);
+}

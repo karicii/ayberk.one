@@ -1,7 +1,4 @@
-<?php 
-// --- DÜZELTME BURADA: base_path() fonksiyonu yerine BASE_PATH sabitini kullan ---
-require(BASE_PATH . '/templates/partials/admin_header.php'); 
-?>
+<?php require(BASE_PATH . '/templates/partials/admin_header.php'); ?>
 
 <div class="admin-container">
     <div class="admin-header">
@@ -15,44 +12,19 @@ require(BASE_PATH . '/templates/partials/admin_header.php');
         </div>
     <?php endif; ?>
 
-    <?php if (empty($messages)) : ?>
-        <p>Henüz gelen bir mesaj yok.</p>
-    <?php else : ?>
-        <table class="messages-table">
-            <thead>
-                <tr>
-                    <th>Gönderen</th>
-                    <th>E-posta</th>
-                    <th>Mesaj</th>
-                    <th>Tarih</th>
-                    <th>IP Adresi</th>
-                    <th>İşlemler</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($messages as $message) : ?>
-                    <tr>
-                        <td><?= htmlspecialchars($message['name']) ?></td>
-                        <td><?= htmlspecialchars($message['email']) ?></td>
-                        <td><?= nl2br(htmlspecialchars($message['message'])) ?></td>
-                        <td><?= date('d.m.Y H:i', strtotime($message['created_at'])) ?></td>
-                        <td><?= htmlspecialchars($message['ip_address']) ?></td>
-                        <td>
-                             <form action="/admin/messages/delete" method="POST" onsubmit="return confirm('Bu mesajı silmek istediğinizden emin misiniz?');">
-                                <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token']; ?>">
-                                <input type="hidden" name="id" value="<?= $message['id']; ?>">
-                                <button type="submit" class="delete-btn">Sil</button>
-                            </form>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-    <?php endif; ?>
-
+    <div class="message-inbox">
+        <?php if (empty($messages)) : ?>
+            <p style="padding: 2rem; text-align: center;">Gelen kutunuzda hiç mesaj yok.</p>
+        <?php else : ?>
+            <?php foreach ($messages as $message) : ?>
+                <a href="/admin/messages/<?= $message['id'] ?>" class="message-item">
+                    <div class="message-sender"><?= htmlspecialchars($message['name']) ?></div>
+                    <div class="message-snippet"><?= htmlspecialchars(substr($message['message'], 0, 80)) . '...' ?></div>
+                    <div class="message-date"><?= date('d M', strtotime($message['created_at'])) ?></div>
+                </a>
+            <?php endforeach; ?>
+        <?php endif; ?>
+    </div>
 </div>
 
-<?php 
-// --- DÜZELTME BURADA: base_path() fonksiyonu yerine BASE_PATH sabitini kullan ---
-require(BASE_PATH . '/templates/partials/admin_footer.php'); 
-?>
+<?php require(BASE_PATH . '/templates/partials/admin_footer.php'); ?>

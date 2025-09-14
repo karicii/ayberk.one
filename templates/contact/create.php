@@ -1,17 +1,14 @@
-<?php 
-// --- DÜZELTME BURADA: base_path() fonksiyonu yerine BASE_PATH sabitini kullan ---
-require(BASE_PATH . '/templates/partials/header.php'); 
-?>
+<?php require(BASE_PATH . '/templates/partials/header.php'); ?>
 
 <main class="container">
-    <div class="contact-form">
-        <h1>İletişim</h1>
+    <div class="contact-form-container">
+        <h1>Bana Ulaşın</h1>
 
         <?php if (isset($errors) && !empty($errors)) : ?>
             <div class="errors">
                 <ul>
                     <?php foreach ($errors as $error) : ?>
-                        <li><?= $error ?></li>
+                        <li><?= htmlspecialchars($error) ?></li>
                     <?php endforeach; ?>
                 </ul>
             </div>
@@ -35,12 +32,9 @@ require(BASE_PATH . '/templates/partials/header.php');
                 <textarea id="message" name="message" rows="6" required><?= $old['message'] ?? '' ?></textarea>
             </div>
             
-            <button type="submit">Gönder</button>
+            <button type="submit" class="button button-primary" style="width: 100%; padding: 12px;">Gönder</button>
         </form>
     </div>
 </main>
 
-<?php 
-// --- DÜZELTME BURADA: base_path() fonksiyonu yerine BASE_PATH sabitini kullan ---
-require(BASE_PATH . '/templates/partials/footer.php'); 
-?>
+<?php require(BASE_PATH . '/templates/partials/footer.php'); ?>

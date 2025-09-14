@@ -293,7 +293,80 @@ a:hover {
     border-radius: var(--border-radius);
     margin-bottom: 2rem;
 }
+.contact-form-container {
+    max-width: 680px;
+    margin: 2rem auto;
+    padding: 2.5rem;
+    background-color: var(--color-surface);
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--color-border);
+}
 
+.contact-form-container h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+}
+
+/* Form elemanları için genel stil (admin.css'ten ilham alındı) */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--color-secondary);
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    color: var(--color-primary);
+    font-size: 1rem;
+    font-family: var(--font-family-sans);
+    transition: all var(--transition-fast);
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgba(0, 112, 243, 0.2);
+}
+
+.form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+/* Hata mesajları için stil */
+.errors {
+    background-color: #4B1B1B;
+    border: 1px solid #e53e3e;
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    color: #fef0f0;
+}
+
+.errors ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.errors li {
+    margin-bottom: 0.25rem;
+}
 .container, 
 .site-header,
 .site-footer,
