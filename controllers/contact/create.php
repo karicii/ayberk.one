@@ -1,4 +1,6 @@
 <?php 
-view('contact/create', [
-    'title' => 'İletişim Formu'
+
+view('contact/create.php', [ // <-- .php UZANTISINI EKLE
+    'title' => 'İletişim',
+    'description' => 'Benimle iletişime geçin.'
 ]);

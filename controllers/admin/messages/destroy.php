@@ -1,8 +1,8 @@
 <?php
-use Core\App;
-use Core\Database;
 
-$db = App::resolve(Database::class);
+authorize();
+
+$db = App::resolve('database');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {

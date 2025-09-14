@@ -1,8 +1,8 @@
 <?php
-use Core\App;
-use Core\Database;
 
-$db = App::resolve(Database::class);
+authorize();
+
+$db = App::resolve('database');
 
 $messages = $db->query('SELECT * FROM messages ORDER BY created_at DESC')->get();
 
