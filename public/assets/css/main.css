@@ -178,7 +178,7 @@ a:hover {
     color: var(--color-secondary);
 }
 
-/* --- Tekil Yazı Sayfası (Genel) --- */
+/* --- Tekil Yazı Sayfası --- */
 .post {
     padding-top: 1rem;
 }
@@ -194,10 +194,17 @@ a:hover {
     margin-bottom: 1rem;
 }
 
-.post-meta, .reading-time-meta {
+.post-meta {
     color: var(--color-secondary);
     font-size: 0.9rem;
     margin-bottom: 0.5rem;
+}
+
+.reading-time-meta {
+    color: var(--color-secondary);
+    font-size: 0.9rem;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
 }
 
 .post-content {
@@ -214,6 +221,17 @@ a:hover {
     object-fit: contain;
 }
 
+.post-featured-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    max-height: 450px;
+    margin-bottom: 2rem;
+    border-radius: var(--border-radius);
+    display: block;
+    object-position: center;
+}
+
 .post-featured-image-container {
     width: 100%;
     overflow: hidden;
@@ -221,16 +239,7 @@ a:hover {
     margin-bottom: 2rem;
 }
 
-.post-featured-image {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    max-height: 450px;
-    display: block;
-    object-position: center;
-}
-
-/* --- İletişim Formu --- */
+/* --- İletişim Formu Stilleri --- */
 .contact-form-container {
     max-width: 680px;
     margin: 2rem auto;
@@ -239,12 +248,17 @@ a:hover {
     border-radius: var(--border-radius-lg);
     border: 1px solid var(--color-border);
 }
+
 .contact-form-container h1 {
     text-align: center;
     margin-bottom: 2rem;
     font-size: 1.8rem;
 }
-.form-group { margin-bottom: 1.5rem; }
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
 .form-group label {
     display: block;
     margin-bottom: 0.5rem;
@@ -252,6 +266,7 @@ a:hover {
     font-size: 0.9rem;
     color: var(--color-secondary);
 }
+
 .form-group input[type="text"],
 .form-group input[type="email"],
 .form-group textarea {
@@ -265,6 +280,7 @@ a:hover {
     font-family: var(--font-family-sans);
     transition: all var(--transition-fast);
 }
+
 .form-group input[type="text"]:focus,
 .form-group input[type="email"]:focus,
 .form-group textarea:focus {
@@ -272,7 +288,12 @@ a:hover {
     border-color: var(--color-accent);
     box-shadow: 0 0 0 3px rgba(0, 112, 243, 0.2);
 }
-.form-group textarea { min-height: 120px; resize: vertical; }
+
+.form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
 .errors {
     background-color: #4B1B1B;
     border: 1px solid #e53e3e;
@@ -282,83 +303,64 @@ a:hover {
     color: #fef0f0;
 }
 
-/* --- AI Çeviri Butonları --- */
-.ai-translate-section { margin: 1rem 0; text-align: center; }
+/* --- AI Çeviri ve Özetleme Bölümü --- */
+.ai-translate-section {
+    margin: 1rem 0;
+    padding: 0;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+.ai-translate-header {
+    margin-bottom: 0.75rem;
+    text-align: center;
+}
 .ai-translate-title {
     font-size: 0.9rem;
     font-weight: 500;
     color: var(--color-secondary);
-    margin-bottom: 0.75rem;
+    font-family: var(--font-family-sans);
+    margin: 0;
 }
-.ai-translate-buttons { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; }
+.ai-translate-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+}
 .ai-translate-btn {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     padding: 0.4rem 0.8rem;
     background: var(--color-surface);
     border: 1px solid var(--color-border);
     border-radius: 20px;
     text-decoration: none;
     color: var(--color-secondary);
+    font-weight: 400;
+    font-family: var(--font-family-sans);
     font-size: 0.8rem;
     transition: all 0.2s ease;
+    white-space: nowrap;
 }
 .ai-translate-btn:hover {
     border-color: var(--color-accent);
     background: var(--color-accent);
     color: var(--color-background);
+    text-decoration: none;
     transform: translateY(-1px);
     box-shadow: 0 2px 8px rgba(0, 112, 243, 0.2);
 }
 
-/* ==========================================================================
-   NİHAİ VE DOĞRU POST SAYFASI YERLEŞİMİ (CSS GRID)
-   ========================================================================== */
-.post-layout-container {
-    display: grid;
-    /* [Sol Boşluk] [Ana İçerik (Max 920px)] [Sağ Boşluk] */
-    grid-template-columns: 1fr minmax(0, var(--content-width)) 1fr;
-    gap: 2.5rem; /* Sütunlar arası boşluk */
-    max-width: 1600px; /* Layout'un rahat çalışması için geniş alan */
-    margin: 0 auto;
-    align-items: start; /* Elemanları yukarı hizala */
-}
-
-/* HTML'deki elemanları grid sütunlarına ata */
-.post-sidebar-left { 
-    grid-column: 1 / 2; 
-    justify-self: end; /* Sidebar'ı sütununun sağına yasla (içeriğe doğru) */
-}
-.post-layout-container > main.container { 
-    grid-column: 2 / 3; 
-    /* Grid içinde container'ın varsayılan genişlik ve margin'ini sıfırla */
-    width: 100%;
-    max-width: 100%;
-    margin: 0;
-    padding: 0; /* Gerekirse padding'i sıfırla */
-}
-.post-sidebar-right { 
-    grid-column: 3 / 4; 
-    justify-self: start; /* Sidebar'ı sütununun soluna yasla (içeriğe doğru) */
-}
-
-/* Her iki sidebar'ı da kaydırıldığında sabit yap (sticky) */
-.post-sidebar-left,
-.post-sidebar-right {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 2rem;
-    width: 220px; /* Sidebar'lara sabit bir genişlik ver */
-}
-
-/* Sağ sidebar içindeki widget'ların stilleri */
+/* --- Sağ Sidebar Widget Stilleri --- */
 .sidebar-widget {
     background-color: var(--color-surface);
     border: 1px solid var(--color-border);
     border-radius: var(--border-radius-lg);
     padding: 1.5rem;
-    margin-bottom: 1.5rem; /* Widget'lar arası boşluk */
 }
+
 .widget-title {
     font-size: 1rem;
     font-weight: 600;
@@ -367,50 +369,74 @@ a:hover {
     padding-bottom: 0.75rem;
     border-bottom: 1px solid var(--color-border);
 }
-.category-list, .share-buttons { list-style: none; margin: 0; padding: 0; }
-.category-list li { margin-bottom: 0.5rem; }
-.category-list a { color: var(--color-secondary); font-size: 0.9rem; }
-.category-list a:hover { color: var(--color-primary); }
-.share-buttons { display: flex; flex-direction: column; gap: 0.75rem; }
-.share-btn { display: block; padding: 0.75rem 1rem; border-radius: var(--border-radius); text-align: center; font-weight: 600; color: #fff; }
-.share-btn:hover { opacity: 0.85; color: #fff; }
+
+/* Kategori Listesi */
+.category-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.category-list li {
+    margin-bottom: 0.5rem;
+}
+
+.category-list a {
+    color: var(--color-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color var(--transition-fast);
+}
+
+.category-list a:hover {
+    color: var(--color-primary);
+}
+
+/* Paylaşım Butonları */
+.share-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.share-btn {
+    display: block;
+    padding: 0.75rem 1rem;
+    border-radius: var(--border-radius);
+    text-align: center;
+    font-weight: 600;
+    color: #fff;
+    text-decoration: none;
+    transition: opacity var(--transition-fast);
+}
+
+.share-btn:hover {
+    opacity: 0.85;
+    color: #fff;
+}
+
 .share-btn.x { background-color: #1DA1F2; }
 .share-btn.linkedin { background-color: #0077B5; }
 .share-btn.whatsapp { background-color: #25D366; }
 
-/* İçindekiler (TOC) Stilleri */
-#toc-container {
-    background-color: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--border-radius-lg);
-    padding: 1.5rem;
+/* ==========================================================================
+   NİHAİ VE TEK EKLEME: SAĞ SIDEBAR KONUMLANDIRMA
+   ========================================================================== */
+.post-sidebar-right {
+    width: 220px;
+    position: absolute;
+    /* Bu hesaplama, toc.js'deki `left` hesaplamasının tam simetriğidir. */
+    /* İçerik alanının sağındaki boşluğa yerleşmesini sağlar. */
+    right: calc((100% - var(--content-width)) / 2 - 250px);
+    
+    /* Dikey hizalama için `top` değeri, toc.js'nin hesapladığı değere
+       yakın bir başlangıç noktası olarak verilir. Gerekirse ayarlanabilir. */
+    top: 250px; 
 }
-#toc-container .widget-title { color: var(--color-primary); }
-#toc-container ul { list-style: none; padding: 0; margin: 0; }
-#toc-container li a {
-    color: var(--color-secondary);
-    text-decoration: none;
-    display: block;
-    padding: 0.4rem 0.5rem;
-    font-size: 0.85rem;
-    border-radius: var(--border-radius);
-    transition: all 0.2s ease;
-}
-#toc-container li a:hover { background-color: rgba(255, 255, 255, 0.05); color: var(--color-primary); }
-#toc-container li a.active { background-color: var(--color-accent); color: #fff; font-weight: 600; }
-#toc-container li.is-h3 { padding-left: 1rem; }
 
-/* Responsive: Ekran 1300px'den dar olduğunda sidebar'ları gizle */
-@media (max-width: 1300px) {
-    .post-layout-container {
-        display: block; /* Grid'i iptal et, normal akışa dön */
-    }
-    .post-sidebar-left,
+/* Mobil ve dar ekranlarda sağ sidebar'ı gizle */
+@media (max-width: 1400px) {
     .post-sidebar-right {
-        display: none; /* Sidebar'ları gizle */
-    }
-    .post-layout-container > main.container {
-        max-width: var(--content-width); /* Ortalanması için orijinal genişliğine geri dön */
-        margin: 0 auto;
+        display: none;
     }
 }
