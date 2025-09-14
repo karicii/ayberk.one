@@ -1,16 +1,16 @@
 <?php
 
+$db = App::resolve('database');
 $email = $_POST['email'];
 $password = $_POST['password'];
 
-$adminEmail = 'mail@ayberk.one';
-$adminPassword = 'COKGUVENCELIBIRSIFRE';
+$user = $db->query('SELECT * FROM users WHERE email = :email', [':email' => $email])->find();
 
-if ($email === $adminEmail && $password === $adminPassword) {
+if ($user && password_verify($password, $user['password'])) {
     $_SESSION['user'] = [
-        'id' => 1, // Sabit ID
-        'email' => $adminEmail,
-        'username' => 'ayberk'
+        'id' => $user['id'],
+        'email' => $user['email'],
+        'username' => $user['username']
     ];
 
     header('Location: /admin');

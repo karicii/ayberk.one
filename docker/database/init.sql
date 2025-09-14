@@ -21,9 +21,4 @@ CREATE TABLE posts (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 ) ENGINE=INNODB;
 
--- ////////////// YENİ EKLENEN BÖLÜM //////////////
--- Varsayılan admin kullanıcısını ekle
--- Şifre burada hash'lenmemiş çünkü login işlemi de hash'siz kontrol ediyor.
--- Normalde şifrelerin hash'lenerek saklanması gerekir.
-INSERT INTO users (id, username, email, password) VALUES (1, 'ayberk', 'mail@ayberk.one', 'COKGUVENCELIBIRSIFRE');
--- //////////////////////////////////////////////
+INSERT INTO users (id, username, email, password) VALUES (1, 'ayberk', 'mail@ayberk.one', '$2y$10$e.eA5Q3R2F8J5a9f2C/d1uB6aF7gH8iJ9kL0mN1oP2qR3sT4uV5u');

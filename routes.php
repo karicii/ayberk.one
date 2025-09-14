@@ -8,7 +8,7 @@ $router->get('/posts/{slug}', 'posts/show.php');
 $router->get('/sitemap.xml', 'sitemap.php');
 
 // Admin Rotaları
-$router->get('/admin', 'admin/index.php'); // <-- BU SATIR EKLENMELİ
+$router->get('/admin', 'admin/index.php'); 
 $router->get('/admin/posts/create', 'posts/create.php');
 $router->post('/admin/posts', 'posts/store.php');
 $router->get('/admin/posts/edit/{id}', 'posts/edit.php');
