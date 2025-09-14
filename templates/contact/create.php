@@ -1,4 +1,7 @@
-<?php require base_path('templates/partials/header.php'); ?>
+<?php 
+// --- DÜZELTME BURADA: base_path() fonksiyonu yerine BASE_PATH sabitini kullan ---
+require(BASE_PATH . '/templates/partials/header.php'); 
+?>
 
 <main class="container">
     <div class="contact-form">
@@ -37,4 +40,7 @@
     </div>
 </main>
 
-<?php require base_path('templates/partials/footer.php'); ?>
+<?php 
+// --- DÜZELTME BURADA: base_path() fonksiyonu yerine BASE_PATH sabitini kullan ---
+require(BASE_PATH . '/templates/partials/footer.php'); 
+?>

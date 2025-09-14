@@ -1,4 +1,7 @@
-<?php require base_path('templates/partials/admin_header.php'); ?>
+<?php 
+// --- DÜZELTME BURADA: base_path() fonksiyonu yerine BASE_PATH sabitini kullan ---
+require(BASE_PATH . '/templates/partials/admin_header.php'); 
+?>
 
 <div class="admin-container">
     <div class="admin-header">
@@ -49,4 +52,7 @@
 
 </div>
 
-<?php require base_path('templates/partials/admin_footer.php'); ?>
+<?php 
+// --- DÜZELTME BURADA: base_path() fonksiyonu yerine BASE_PATH sabitini kullan ---
+require(BASE_PATH . '/templates/partials/admin_footer.php'); 
+?>
