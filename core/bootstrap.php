@@ -2,22 +2,14 @@
 
 declare(strict_types=1);
 
-// --- YENİ GÜVENLİ OTURUM BAŞLATMA FONKSİYONU ---
 function secure_session_start() {
-    // Session'ın sadece çerezler üzerinden yönetilmesini zorunlu kıl
     ini_set('session.use_only_cookies', 1);
-    // Çerezlerin sadece HTTP üzerinden erişilebilir olmasını sağla (JavaScript erişimini engelle)
     ini_set('session.cookie_httponly', 1);
-    // Çerezlerin sadece güvenli (HTTPS) bağlantılarda gönderilmesini sağla
     ini_set('session.cookie_secure', isset($_SERVER['HTTPS']));
-    // Çerezlerin siteler arası isteklerde nasıl davranacağını belirle (CSRF korumasına yardımcı olur)
     ini_set('session.cookie_samesite', 'Lax');
 
-    // Ayarları yaptıktan sonra session'ı başlat
     session_start();
     
-    // Her 30 dakikada bir session ID'sini otomatik olarak yenileyerek
-    // "session fixation" saldırılarına karşı ek bir koruma katmanı sağla.
     if (!isset($_SESSION['last_regeneration'])) {
         $_SESSION['last_regeneration'] = time();
     } elseif (time() - $_SESSION['last_regeneration'] > 1800) {
@@ -26,13 +18,14 @@ function secure_session_start() {
     }
 }
 
-// Varsayılan session_start() yerine artık bu güvenli fonksiyonu kullanıyoruz.
 secure_session_start();
 
-// Her sayfa yüklendiğinde CSRF token'ının var olduğundan emin ol.
 generate_csrf_token();
 
 require BASE_PATH . '/core/functions.php';
+
+set_security_headers(); 
+
 require BASE_PATH . '/core/App.php';
 
 function load_env(string $path): void {
@@ -68,7 +61,6 @@ $method = $_POST['_method'] ?? $_SERVER['REQUEST_METHOD'];
 
 $router->dispatch($uri, $method);
 
-// --- GÜNCELLENMİŞ CSRF FONKSİYONLARI ---
 function generate_csrf_token() {
     if (empty($_SESSION['csrf_token'])) {
         $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
@@ -81,4 +73,3 @@ function verify_csrf_token() {
         die('CSRF token validation failed. Lütfen sayfayı yenileyip tekrar deneyin.');
     }
 }
-// ------------------------------------
