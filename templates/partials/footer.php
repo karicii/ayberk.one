@@ -10,7 +10,10 @@
                 </nav>
             </div>
         </footer>
-    </div> 
+    
+    <?php // --- DEĞİŞİKLİK BURADA: Post sayfası değilse </div> etiketini ekle --- ?>
+    <?= (!isset($isPostShowPage) || !$isPostShowPage) ? '</div>' : '' ?>
+
     <script src="/assets/js/app.js"></script>
     <script src="/assets/js/toc.js"></script>
 </body>

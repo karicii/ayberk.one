@@ -1,7 +1,17 @@
 <?php require(BASE_PATH . '/templates/partials/header.php'); ?>
 
-<?php require_once BASE_PATH . '/core/ReadingTime.php'; ?>
-<?php require_once BASE_PATH . '/core/AiTranslate.php'; ?>
+<?php
+// Gerekli sınıfları burada da çağırıyoruz
+require_once BASE_PATH . '/core/ReadingTime.php';
+require_once BASE_PATH . '/core/AiTranslate.php';
+?>
+
+<?php // --- ÖNEMLİ DÜZELTME BAŞLANGICI --- ?>
+<?php // Header'dan gelen dar .container ve .site-content'i burada kapatıyoruz ?>
+</main>
+</div>
+<?php // --- ÖNEMLİ DÜZELTME SONU --- ?>
+
 
 <div class="post-layout-container">
     
@@ -58,5 +68,12 @@
     </aside>
 
 </div>
+
+<?php // --- ÖNEMLİ DÜZELTME BAŞLANGICI --- ?>
+<?php // Footer.php'nin hata vermemesi için kapattığımız etiketleri burada yeniden açıyoruz ki footer onları kapatabilsin. ?>
+<div class="container" style="display: none;">
+<main class="site-content" style="display: none;">
+<?php // --- ÖNEMLİ DÜZELTME SONU --- ?>
+
 
 <?php require(BASE_PATH . '/templates/partials/footer.php'); ?>

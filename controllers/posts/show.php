@@ -19,9 +19,14 @@ $pageDescription = substr(strip_tags($post['body']), 0, 155) . '...';
 // SEO Yapısal Veri
 $jsonLdSchema = generate_json_ld($post);
 
+// --- YENİ EKLENEN SATIR ---
+// Bu değişken, header ve footer'a bu sayfanın özel bir yerleşime sahip olduğunu söyleyecek.
+$isPostShowPage = true; 
+
 view('posts/show.php', [
     'pageTitle' => $pageTitle,
     'pageDescription' => $pageDescription,
     'post' => $post,
-    'jsonLdSchema' => $jsonLdSchema // Oluşturulan JSON-LD'yi şablona gönder
+    'jsonLdSchema' => $jsonLdSchema,
+    'isPostShowPage' => $isPostShowPage // Değişkeni view'e gönder
 ]);
