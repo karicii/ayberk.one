@@ -25,7 +25,7 @@
                     <li><a href="/">Anasayfa</a></li>
                     <li><a href="/projeler">Projeler</a></li>
                     <li><a href="/hakkimda">Hakkımda</a></li>
-                    <li><a href="/iletisim">İletişim</a></li>
+                    <li><a href="/contact">İletişim</a></li>
                 </ul>
             </nav>
         </header>

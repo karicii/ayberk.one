@@ -20,6 +20,7 @@
         <header class="admin-header">
             <a href="/admin" class="logo">AYBERK.ONE | KONTROL PANELİ</a>
             <nav class="admin-nav">
+                <a href="/admin/messages">Mesajlar</a>
                 <form method="POST" action="/logout">
                     <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>"> <button type="submit" class="button-logout">Çıkış Yap</button>
                 </form>

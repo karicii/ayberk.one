@@ -1,6 +1,5 @@
 <?php
 
-// GÜNCELLEME: Artık die() yerine /login'e yönlendiriyor.
 function authorize() {
     if (!isset($_SESSION['user'])) {
         header('Location: /login');
@@ -61,33 +60,25 @@ function generate_json_ld(array $post): string
     return '<script type="application/ld+json">' . $json . '</script>';
 }
 
-// --- YENİ EKLENEN GÜVENLİK BAŞLIKLARI FONKSİYONU ---
 function set_security_headers() {
-    // Tarayıcının, içeriği "MIME type sniffing" ile tahmin etmesini engeller. Bu, XSS'e karşı korur.
     header('X-Content-Type-Options: nosniff');
 
-    // Sitenin bir <iframe> içinde yüklenmesini engelleyerek "clickjacking" saldırılarını önler.
     header('X-Frame-Options: DENY');
 
-    // Tarayıcının dahili XSS filtresini etkinleştirir. (Modern tarayıcılarda CSP daha etkilidir)
     header('X-XSS-Protection: 1; mode=block');
 
-    // Sadece HTTPS üzerinden iletişim kurulmasını zorunlu kılar (canlıda HTTPS kuruluysa etkilidir).
-    // Bir yıl boyunca tarayıcıya sadece HTTPS kullanmasını söyler.
     header('Strict-Transport-Security: max-age=31536000; includeSubDomains');
 
-    // İzin verilen kaynakları tanımlayan İçerik Güvenliği Politikası (CSP)
-    $csp = "default-src 'self'; "; // Varsayılan olarak sadece kendi kaynağından gelenlere izin ver
-    $csp .= "script-src 'self' https://cdn.jsdelivr.net; "; // Scriptler: Kendi kaynağın ve QuillJS'in CDN'i
-    $csp .= "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; "; // Stiller: Kendi kaynağın, Google Fonts ve QuillJS'in CDN'i
-    $csp .= "font-src https://fonts.gstatic.com; "; // Fontlar: Sadece Google Fonts
-    $csp .= "img-src 'self' data:; "; // Resimler: Kendi kaynağın ve data: URI'ları (base64 resimler için)
-    $csp .= "form-action 'self'; "; // Formlar sadece kendi kaynağına gönderilebilir
-    $csp .= "object-src 'none'; "; // <object>, <embed>, <applet> gibi eklentileri engelle
-    $csp .= "frame-ancestors 'none'; "; // Sitenin iframe içinde yüklenmesini engelle
-    $csp .= "base-uri 'self'; "; // <base> etiketinin kötüye kullanılmasını engelle
-    $csp .= "upgrade-insecure-requests;"; // Tüm HTTP isteklerini otomatik olarak HTTPS'e yükselt
+    $csp = "default-src 'self'; "; 
+    $csp .= "script-src 'self' https://cdn.jsdelivr.net; "; 
+    $csp .= "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; ";
+    $csp .= "font-src https://fonts.gstatic.com; "; 
+    $csp .= "img-src 'self' data:; ";
+    $csp .= "form-action 'self'; ";
+    $csp .= "object-src 'none'; "; 
+    $csp .= "frame-ancestors 'none'; ";
+    $csp .= "base-uri 'self'; ";
+    $csp .= "upgrade-insecure-requests;"; 
 
     header("Content-Security-Policy: " . $csp);
 }
-// ----------------------------------------------------
