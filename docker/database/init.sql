@@ -16,6 +16,7 @@ CREATE TABLE posts (
     slug VARCHAR(255) NOT NULL UNIQUE,
     body TEXT NOT NULL,
     image_path VARCHAR(255) NULL,
+    reading_time INT DEFAULT 1, -- <-- YENİ SÜTUN EKLENDİ
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
@@ -32,3 +33,22 @@ CREATE TABLE messages (
     user_agent TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+CREATE TABLE categories (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    slug VARCHAR(255) NOT NULL UNIQUE
+) ENGINE=INNODB;
+
+CREATE TABLE post_categories (
+    post_id INT NOT NULL,
+    category_id INT NOT NULL,
+    PRIMARY KEY (post_id, category_id),
+    FOREIGN KEY (post_id) REFERENCES posts(id) ON DELETE CASCADE,
+    FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE CASCADE
+) ENGINE=INNODB; 
+
+INSERT INTO categories (name, slug) VALUES 
+('Yazılım Geliştirme', 'yazilim-gelistirme'),
+('Girişimcilik', 'girisimcilik'),
+('Web Tasarım', 'web-tasarim'),
+('SaaS', 'saas');

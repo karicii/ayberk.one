@@ -4,7 +4,9 @@
 
     <form id="post-form" class="admin-form" action="/admin/posts/<?= $post['id'] ?>" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="_method" value="PATCH">
-        <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>"> <div class="form-group">
+        <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
+        
+        <div class="form-group">
             <label for="title">Başlık</label>
             <input type="text" id="title" name="title" value="<?= htmlspecialchars($post['title'] ?? '') ?>">
         </div>
@@ -17,6 +19,17 @@
             <?php endif; ?>
         </div>
 
+        <div class="form-group">
+            <label>Kategoriler</label>
+            <div class="category-checkbox-group">
+                <?php foreach ($categories as $category): ?>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="categories[]" value="<?= $category['id'] ?>" <?= in_array($category['id'], $postCategoryIds) ? 'checked' : '' ?>>
+                        <?= htmlspecialchars($category['name']) ?>
+                    </label>
+                <?php endforeach; ?>
+            </div>
+        </div>
         <div class="form-group">
             <label for="body">İçerik</label>
             <div id="editor" style="min-height: 250px;"><?= $post['body'] ?? '' ?></div>

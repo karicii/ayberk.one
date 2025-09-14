@@ -1,13 +1,14 @@
-<?php require(BASE_PATH . '/templates/partials/header.php') ?>
+<?php require(BASE_PATH . '/templates/partials/header.php'); ?>
 
-<?php /* ReadingTime sınıfını dahil et */ ?>
 <?php require_once BASE_PATH . '/core/ReadingTime.php'; ?>
 <?php require_once BASE_PATH . '/core/AiTranslate.php'; ?>
 
-<?php /* İçindekiler tablosu doğrudan body içinde, container dışında */ ?>
+<div class="post-layout-container">
+    
+    <aside class="post-sidebar-left">
+        </aside>
 
-<div class="post-layout">
-    <div class="post-main">
+    <main class="container">
         <article class="post">
             <header class="post-header">
                 <?php if (!empty($post['image_path'])): ?>
@@ -27,7 +28,6 @@
                 </p>
                 
                 <?php 
-                // AI Çeviri ve Özetleme Butonları - Okuma süresi altında
                 $baseUrl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'];
                 echo AiTranslate::generateButtons($post['title'], $post['slug'], $baseUrl);
                 ?>
@@ -37,7 +37,26 @@
                 <?= $post['body'] ?>
             </div>
         </article>
-    </div>
+    </main>
+
+    <aside class="post-sidebar-right">
+        <div class="sidebar-widget">
+            <h3 class="widget-title">Kategoriler</h3>
+            <ul class="category-list">
+                <li><a href="#">Yazılım Geliştirme</a></li>
+                <li><a href="#">Web Tasarım</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-widget">
+            <h3 class="widget-title">Paylaş</h3>
+            <div class="share-buttons">
+                <a href="#" target="_blank" class="share-btn x">X</a>
+                <a href="#" target="_blank" class="share-btn linkedin">LinkedIn</a>
+                <a href="#" target="_blank" class="share-btn whatsapp">WhatsApp</a>
+            </div>
+        </div>
+    </aside>
+
 </div>
 
-<?php require(BASE_PATH . '/templates/partials/footer.php') ?>
+<?php require(BASE_PATH . '/templates/partials/footer.php'); ?>

@@ -70,7 +70,7 @@ function set_security_headers() {
     header('Strict-Transport-Security: max-age=31536000; includeSubDomains');
 
     $csp = "default-src 'self'; "; 
-    $csp .= "script-src 'self' https://cdn.jsdelivr.net; "; 
+    $csp .= "script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; "; 
     $csp .= "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; ";
     $csp .= "font-src https://fonts.gstatic.com; "; 
     $csp .= "img-src 'self' data:; ";
