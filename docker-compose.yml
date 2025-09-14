@@ -1,4 +1,3 @@
-
 services:
   web:
     build:
@@ -9,8 +8,8 @@ services:
     volumes:
       - ./:/var/www/html
       - ./docker/php-apache/apache.conf:/etc/apache2/sites-enabled/000-default.conf
-    # NİHAİ KOMUT: uploads klasörüne açıkça ve zorla en geniş yazma iznini ver
-    command: sh -c "chown -R www-data:www-data /var/www/html && chmod -R 755 /var/www/html && chmod -R 777 /var/www/html/public/uploads && apache2-foreground"
+    # NİHAİ KOMUT: Sadece uploads klasörüne yazma izni ver ve sunucuyu başlat
+    command: sh -c "chmod -R 777 /var/www/html/public/uploads && apache2-foreground"
     depends_on:
       db:
         condition: service_healthy

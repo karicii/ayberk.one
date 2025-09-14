@@ -21,7 +21,7 @@ CREATE TABLE posts (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 ) ENGINE=INNODB;
 
-INSERT INTO users (id, username, email, password) VALUES (1, 'ayberk', 'mail@ayberk.one', '$2y$10$e.eA5Q3R2F8J5a9f2C/d1uB6aF7gH8iJ9kL0mN1oP2qR3sT4uV5u');
+INSERT INTO users (id, username, email, password) VALUES (1, 'ayberk', 'mail@ayberk.one', '$2y$10$cikhXiueP.VOw0T9THqEbuSvGCnfJ5W5P3XobJCuRFtHshtq5ZRmG');
 
 CREATE TABLE messages (
     id INT AUTO_INCREMENT PRIMARY KEY,
