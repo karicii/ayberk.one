@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 session_start();
+generate_csrf_token(); 
 
 require BASE_PATH . '/core/functions.php';
 require BASE_PATH . '/core/App.php';
@@ -33,9 +34,23 @@ App::bind('database', $db);
 $router = require BASE_PATH . '/routes.php';
 
 $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
-$uri = trim($uri, '/'); // Başındaki ve sonundaki tüm / işaretlerini kaldır
-$uri = '/' . $uri; 
+$uri = trim($uri, '/'); 
+$uri = '/' . $uri;
 
 $method = $_POST['_method'] ?? $_SERVER['REQUEST_METHOD'];
 
 $router->dispatch($uri, $method);
+
+function generate_csrf_token() {
+    if (empty($_SESSION['csrf_token'])) {
+        $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+    }
+}
+
+function verify_csrf_token() {
+    if (!isset($_POST['csrf_token']) || !hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
+        http_response_code(403);
+        die('CSRF token validation failed.');
+    }
+    unset($_SESSION['csrf_token']);
+}

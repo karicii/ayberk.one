@@ -3,7 +3,7 @@
 <div class="login-container">
     <h1>Giriş Yap</h1>
     <form class="admin-form" action="/login" method="POST">
-        <?php if (isset($error)): ?>
+        <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>"> <?php if (isset($error)): ?>
             <p class="error"><?= htmlspecialchars($error) ?></p>
         <?php endif; ?>
         <div class="form-group">

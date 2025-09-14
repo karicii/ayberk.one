@@ -1,19 +1,22 @@
 <?php
-
+verify_csrf_token();
 authorize();
 
 $db = App::resolve('database');
 global $router; 
 $id = $router->params('id');
-$currentUserId = 1;
+$currentUserId = $_SESSION['user']['id']; // <-- DEĞİŞİKLİK BURADA
 
-$post = $db->query('SELECT * FROM posts WHERE id = :id', [':id' => $id])->find();
+$post = $db->query('SELECT * FROM posts WHERE id = :id AND user_id = :user_id', [
+    ':id' => $id,
+    ':user_id' => $currentUserId
+])->find();
 
-if ($post && $post['user_id'] === $currentUserId) {
+if ($post) {
     $db->query('DELETE FROM posts WHERE id = :id', [
         ':id' => $id
     ]);
 }
 
-header('Location: /');
+header('Location: /admin'); 
 exit();

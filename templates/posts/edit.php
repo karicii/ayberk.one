@@ -4,8 +4,7 @@
 
     <form id="post-form" class="admin-form" action="/admin/posts/<?= $post['id'] ?>" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="_method" value="PATCH">
-        
-        <div class="form-group">
+        <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>"> <div class="form-group">
             <label for="title">Başlık</label>
             <input type="text" id="title" name="title" value="<?= htmlspecialchars($post['title'] ?? '') ?>">
         </div>

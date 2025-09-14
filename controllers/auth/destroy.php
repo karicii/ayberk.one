@@ -1,5 +1,5 @@
 <?php
-
+verify_csrf_token();
 $_SESSION = [];
 session_destroy();
 

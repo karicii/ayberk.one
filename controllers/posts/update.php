@@ -1,5 +1,5 @@
 <?php
-
+verify_csrf_token();
 authorize();
 
 $db = App::resolve('database');

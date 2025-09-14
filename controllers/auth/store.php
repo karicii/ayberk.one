@@ -1,5 +1,5 @@
 <?php
-
+verify_csrf_token();
 $db = App::resolve('database');
 $email = $_POST['email'];
 $password = $_POST['password'];

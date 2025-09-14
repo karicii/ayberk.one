@@ -24,7 +24,7 @@
                             <a href="/admin/posts/edit/<?= $post['id'] ?>" class="button">Düzenle</a>
                             <form method="POST" action="/admin/posts/<?= $post['id'] ?>" style="display: inline;">
                                 <input type="hidden" name="_method" value="DELETE">
-                                <button type="submit" class="button button-delete" onclick="return confirm('Bu yazıyı silmek istediğinizden emin misiniz?')">Sil</button>
+                                <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>"> <button type="submit" class="button button-delete" onclick="return confirm('Bu yazıyı silmek istediğinizden emin misiniz?')">Sil</button>
                             </form>
                         </td>
                     </tr>
