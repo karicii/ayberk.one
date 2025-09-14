@@ -1,5 +1,4 @@
 <?php
-verify_csrf_token();
 authorize();
 
 $pageTitle = 'Yeni Yazı Oluştur';
