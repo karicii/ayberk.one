@@ -345,20 +345,19 @@ a:hover {
     white-space: nowrap;
 }
 .ai-translate-btn:hover {
-    border-color: var(--color-accent);
-    background: var(--color-accent);
+    border-color: var(--color-surface);
+    background: var(--color-primary);
     color: var(--color-background);
     text-decoration: none;
     transform: translateY(-1px);
     box-shadow: 0 2px 8px rgba(0, 112, 243, 0.2);
 }
 
-/* --- Sağ Sidebar Widget Stilleri --- */
 .sidebar-widget {
-    background-color: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--border-radius-lg);
-    padding: 1.5rem;
+    background-color: transparent; /* Arka planı kaldır */
+    border: none;                  /* Kenarlığı kaldır */
+    padding: 0;                    /* İç boşluğu kaldır */
+    margin-bottom: 2.5rem;         /* Modüller arasına boşluk ekle */
 }
 
 .widget-title {
@@ -391,50 +390,44 @@ a:hover {
 .category-list a:hover {
     color: var(--color-primary);
 }
-
-/* Paylaşım Butonları */
 .share-buttons {
     display: flex;
-    flex-direction: column;
+    flex-direction: row; /* Butonları yan yana sırala */
     gap: 0.75rem;
+    justify-content: center; /* Butonları ortala */
+    margin-top: 1rem;
 }
 
 .share-btn {
-    display: block;
-    padding: 0.75rem 1rem;
-    border-radius: var(--border-radius);
-    text-align: center;
-    font-weight: 600;
-    color: #fff;
-    text-decoration: none;
-    transition: opacity var(--transition-fast);
+    display: flex; /* İkonu ortalamak için */
+    align-items: center;
+    justify-content: center;
+    width: 44px;  /* Genişlik ve yüksekliği eşitleyerek daire oluştur */
+    height: 44px;
+    background-color: transparent; /* Arka plan rengini kaldır */
+    color: var(--color-secondary); /* İkon rengi */
+    transition: all var(--transition-fast);
 }
 
 .share-btn:hover {
-    opacity: 0.85;
-    color: #fff;
+    background-color: var(--color-surface); /* Üzerine gelince arka plan rengi */
+    border-color: var(--color-secondary);
+    color: var(--color-primary); /* Üzerine gelince ikon rengi */
+    transform: translateY(-2px); /* Hafif yukarı kalkma efekti */
 }
 
-.share-btn.x { background-color: #1DA1F2; }
-.share-btn.linkedin { background-color: #0077B5; }
-.share-btn.whatsapp { background-color: #25D366; }
+.share-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor; /* İkonun rengini üst elementten (<a>) almasını sağla */
+}
 
-/* ==========================================================================
-   NİHAİ VE TEK EKLEME: SAĞ SIDEBAR KONUMLANDIRMA
-   ========================================================================== */
 .post-sidebar-right {
     width: 220px;
-    position: absolute;
-    /* Bu hesaplama, toc.js'deki `left` hesaplamasının tam simetriğidir. */
-    /* İçerik alanının sağındaki boşluğa yerleşmesini sağlar. */
     right: calc((100% - var(--content-width)) / 2 - 250px);
-    
-    /* Dikey hizalama için `top` değeri, toc.js'nin hesapladığı değere
-       yakın bir başlangıç noktası olarak verilir. Gerekirse ayarlanabilir. */
-    top: 250px; 
 }
 
-/* Mobil ve dar ekranlarda sağ sidebar'ı gizle */
+/* Mobil ve dar ekranlarda sağ sidebar'ı gizle (Bu kısım aynı kalacak) */
 @media (max-width: 1400px) {
     .post-sidebar-right {
         display: none;
