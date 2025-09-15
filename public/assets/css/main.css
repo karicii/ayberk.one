@@ -279,6 +279,7 @@ a:hover {
     font-size: 1rem;
     font-family: var(--font-family-sans);
     transition: all var(--transition-fast);
+    resize:none;
 }
 
 .form-group input[type="text"]:focus,
@@ -301,6 +302,10 @@ a:hover {
     padding: 1rem;
     margin-bottom: 1.5rem;
     color: #fef0f0;
+}
+
+.errors p {
+    margin: 0;
 }
 
 /* --- AI Çeviri ve Özetleme Bölümü --- */

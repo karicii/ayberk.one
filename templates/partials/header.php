@@ -6,7 +6,7 @@
 
     <title><?= isset($pageTitle) ? htmlspecialchars($pageTitle) . ' | Ayberk.one' : 'Ayberk.one' ?></title>
     <meta name="description" content="<?= isset($pageDescription) ? htmlspecialchars($pageDescription) : 'Girişimci, yazılımcı. Web projeleri, SaaS ürünleri ve yazılım tabanlı satış sistemleri üzerine notlar.' ?>">
-    
+    <link rel="icon" type="icon" href="/assets/images/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
@@ -16,7 +16,6 @@
     <?= $jsonLdSchema ?? '' ?>
 </head>
 <body>
-    <!-- İçindekiler tablosu JavaScript ile otomatik oluşturulacak -->
     <div class="container">
         <header class="site-header">
             <a href="/" class="logo">AYBERK.ONE</a>
@@ -29,3 +28,9 @@
             </nav>
         </header>
         <main class="site-content">
+        <?php if (isset($_SESSION['success_message'])) : ?>
+            <div class="alert alert-success">
+                <?= $_SESSION['success_message'] ?>
+                <?php unset($_SESSION['success_message']); ?>
+            </div>
+        <?php endif; ?>

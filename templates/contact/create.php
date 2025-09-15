@@ -12,11 +12,9 @@ require(BASE_PATH . '/templates/partials/header.php');
 
         <?php if (isset($errors) && !empty($errors)) : ?>
             <div class="errors">
-                <ul>
-                    <?php foreach ($errors as $error) : ?>
-                        <li><?= htmlspecialchars($error) ?></li>
-                    <?php endforeach; ?>
-                </ul>
+                <?php foreach ($errors as $error) : ?>
+                    <p><?= htmlspecialchars($error) ?></p>
+                <?php endforeach; ?>
             </div>
         <?php endif; ?>
         
