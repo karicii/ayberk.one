@@ -452,3 +452,77 @@ a:hover {
     font-size: 2rem;
     margin: 0;
 }
+.error-page-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 2rem;
+}
+
+.error-page-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+}
+
+.error-content {
+    max-width: 550px;
+    width: 100%;
+}
+
+.pixel-grid {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.digit {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(7, 1fr);
+    gap: 8px; /* Piksel aralığı */
+}
+
+.p { /* Pixel */
+    width: 18px;
+    height: 18px;
+    background-color: #1f1f1f; /* 'Sönük' piksel rengi (daha belirgin) */
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.p.a { /* Active Pixel */
+    background-color: #555555; /* 'Yanık' piksel rengi (çok daha belirgin) */
+}
+.error-headline {
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+}
+
+.error-subtext {
+    color: var(--color-secondary);
+    margin-bottom: 2rem;
+}
+
+.error-button {
+    background-color: var(--color-surface);
+    color: var(--color-secondary);
+    border: 1px solid var(--color-border);
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: var(--border-radius);
+    transition: all var(--transition-fast);
+}
+
+.error-button:hover {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-background);
+}

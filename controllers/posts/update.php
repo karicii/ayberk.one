@@ -4,20 +4,18 @@ authorize();
 
 $db = App::resolve('database');
 
-// ReadingTime sınıfını dahil et
 require_once BASE_PATH . '/core/ReadingTime.php';
 global $router;
 $id = $router->params('id');
 $currentUserId = $_SESSION['user']['id'];
 
-// Önce güncellenecek yazıyı bul
+// Güncellenecek yazıyı bul
 $post = $db->query('SELECT * FROM posts WHERE id = :id AND user_id = :user_id', [
     ':id' => $id,
     ':user_id' => $currentUserId
 ])->find();
 
 if (!$post) {
-    // Yazı bulunamazsa veya kullanıcıya ait değilse yetkisiz erişim hatası ver
     http_response_code(403);
     die('Yetkisiz erişim.');
 }
@@ -26,50 +24,71 @@ $title = $_POST['title'] ?? null;
 $body = $_POST['body'] ?? null;
 $errors = [];
 
-// Form doğrulama
-if (empty($title)) $errors[] = 'Başlık zorunludur.';
+if (empty($title)) {
+    $errors[] = 'Başlık zorunludur.';
+}
 
-// Görsel Yükleme Mantığı (Sadece yeni bir görsel seçildiyse çalışır)
-$imagePath = $post['image_path']; // Varsayılan olarak mevcut görseli koru
+$imagePath = $post['image_path'];
 if (isset($_FILES['post_image']) && $_FILES['post_image']['error'] === UPLOAD_ERR_OK) {
-    // ... (store.php'deki ile aynı görsel yükleme ve doğrulama mantığı) ...
     $uploadDir = BASE_PATH . '/public/uploads/';
     $fileName = uniqid() . '-' . basename($_FILES['post_image']['name']);
     $targetFile = $uploadDir . $fileName;
     if (move_uploaded_file($_FILES['post_image']['tmp_name'], $targetFile)) {
-        // Yeni görsel başarıyla yüklendiyse, eski görseli sil (isteğe bağlı ama önerilir)
         if ($imagePath && file_exists(BASE_PATH . '/public' . $imagePath)) {
             unlink(BASE_PATH . '/public' . $imagePath);
         }
-        $imagePath = '/uploads/' . $fileName; // Veritabanı için yeni yolu ayarla
+        $imagePath = '/uploads/' . $fileName;
     } else {
         $errors[] = 'Yeni görsel yüklenirken bir hata oluştu.';
     }
 }
 
 if (empty($errors)) {
-    // Okuma süresini hesapla
+    // Slug'ı sadece başlık değiştiyse yeniden oluştur
+    $slug = ($post['title'] !== $title) ? slugify($title) : $post['slug'];
     $readingTime = ReadingTime::calculate($body);
-    
+
+    // 1. Yazı bilgilerini GÜNCELLE (Doğru SQL komutu)
     $db->query(
-        'UPDATE posts SET title = :title, body = :body, image_path = :image_path, reading_time = :reading_time WHERE id = :id',
+        'UPDATE posts SET title = :title, slug = :slug, body = :body, image_path = :image_path, reading_time = :reading_time WHERE id = :id',
         [
             ':id' => $id,
             ':title' => $title,
+            ':slug' => $slug,
             ':body' => $body,
-            ':image_path' => $imagePath, // Yeni veya mevcut görsel yolunu güncelle
+            ':image_path' => $imagePath,
             ':reading_time' => $readingTime
         ]
     );
+
+    // 2. Bu yazıya ait tüm eski kategori ilişkilerini sil
+    $db->query('DELETE FROM post_categories WHERE post_id = :post_id', [':post_id' => $id]);
+
+    // 3. Yeni seçilen kategorileri ekle
+    if (!empty($_POST['categories'])) {
+        foreach ($_POST['categories'] as $categoryId) {
+            $db->query(
+                'INSERT INTO post_categories(post_id, category_id) VALUES(:post_id, :category_id)',
+                [
+                    ':post_id' => $id,
+                    ':category_id' => $categoryId
+                ]
+            );
+        }
+    }
     
     header('Location: /admin');
     exit();
 }
 
 // Hata varsa formu tekrar göster
+$categories = $db->query('SELECT * FROM categories ORDER BY name ASC')->findAll();
+$postCategoryIds = $db->query('SELECT category_id FROM post_categories WHERE post_id = :post_id', [':post_id' => $id])->findAll(PDO::FETCH_COLUMN);
 $pageTitle = 'Yazıyı Düzenle';
 view('posts/edit.php', [
     'pageTitle' => $pageTitle,
     'post' => $post,
+    'categories' => $categories,
+    'postCategoryIds' => $postCategoryIds,
     'errors' => $errors
 ]);
