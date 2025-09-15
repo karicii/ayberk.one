@@ -1,7 +1,10 @@
 <?php require(BASE_PATH . '/templates/partials/admin_header.php') ?>
 
+<div class="content-header">
     <h1><?= $pageTitle ?></h1>
+</div>
 
+<div class="content-panel">
     <form id="post-form" class="admin-form" action="/admin/posts/<?= $post['id'] ?>" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="_method" value="PATCH">
         <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
@@ -15,7 +18,7 @@
             <label for="post_image">Kapak Görselini Değiştir (İsteğe Bağlı)</label>
             <input type="file" id="post_image" name="post_image">
             <?php if (!empty($post['image_path'])): ?>
-                <p style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--color-secondary);">Mevcut görsel: <?= basename($post['image_path']) ?></p>
+                <p class="form-hint">Mevcut görsel: <?= basename($post['image_path']) ?></p>
             <?php endif; ?>
         </div>
 
@@ -38,17 +41,19 @@
         
         <?php if (!empty($errors)): ?>
             <div class="errors">
-                <ul>
-                    <?php foreach ($errors as $error): ?>
-                        <li><?= htmlspecialchars($error) ?></li>
-                    <?php endforeach; ?>
-                </ul>
+                <?php foreach ($errors as $error): ?>
+                <p><?= htmlspecialchars($error) ?></p>
+                <?php endforeach; ?>
             </div>
         <?php endif; ?>
 
-        <div class="form-group">
-            <button type="submit" class="button button-primary">Güncelle</button>
+        <div class="form-actions">
+            <button type="submit" class="button button-primary">
+                <i data-lucide="save"></i>
+                <span>Güncelle</span>
+            </button>
         </div>
     </form>
+</div>
 
 <?php require(BASE_PATH . '/templates/partials/admin_footer.php') ?>
