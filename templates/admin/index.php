@@ -14,7 +14,7 @@
                 <tr>
                     <th>Başlık</th>
                     <th>Tarih</th>
-                    <th>İşlemler</th>
+                    <th class="actions-header">İşlemler</th>
                 </tr>
             </thead>
             <tbody>
@@ -24,19 +24,28 @@
                             <td><?= htmlspecialchars($post['title']) ?></td>
                             <td><?= date('d M Y', strtotime($post['created_at'])) ?></td>
                             <td class="actions">
-                                <a href="/posts/<?= $post['slug'] ?>" target="_blank" class="button" title="Görüntüle"><i data-lucide="eye"></i></a>
-                                <a href="/admin/posts/edit/<?= $post['id'] ?>" class="button" title="Düzenle"><i data-lucide="file-pen-line"></i></a>
+                                <a href="/posts/<?= $post['slug'] ?>" target="_blank" class="button" title="Görüntüle">
+                                    <i data-lucide="eye"></i>
+                                    <span>Görüntüle</span>
+                                </a>
+                                <a href="/admin/posts/edit/<?= $post['id'] ?>" class="button" title="Düzenle">
+                                    <i data-lucide="file-pen-line"></i>
+                                    <span>Düzenle</span>
+                                </a>
                                 <form method="POST" action="/admin/posts/<?= $post['id'] ?>" style="display: inline;">
                                     <input type="hidden" name="_method" value="DELETE">
                                     <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
-                                    <button type="submit" class="button button-delete" title="Sil" onclick="return confirm('Bu yazıyı silmek istediğinizden emin misiniz?')"><i data-lucide="trash-2"></i></button>
+                                    <button type="submit" class="button button-delete" title="Sil" onclick="return confirm('Bu yazıyı silmek istediğinizden emin misiniz?')">
+                                        <i data-lucide="trash-2"></i>
+                                        <span>Sil</span>
+                                    </button>
                                 </form>
                             </td>
                         </tr>
                     <?php endforeach; ?>
                 <?php else: ?>
                     <tr>
-                        <td colspan="3" class="empty-state">Henüz hiç yazı eklenmemiş.</td>
+                        <td colspan="3" class="text-center empty-state">Henüz hiç yazı eklenmemiş.</td>
                     </tr>
                 <?php endif; ?>
             </tbody>

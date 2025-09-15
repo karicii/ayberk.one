@@ -40,3 +40,22 @@ view('posts/show.php', [
     'isPostShowPage' => $isPostShowPage,
     'categories' => $categories // Kategorileri view'e gönder
 ]);
+
+use core\App;
+use core\Database;
+
+$db = App::resolve(Database::class);
+
+$post = $db->query('SELECT * FROM posts WHERE slug = :slug', [
+    'slug' => $slug
+])->findOrFail();
+
+// Görüntülenme sayısını artır
+$db->query('UPDATE posts SET view_count = view_count + 1 WHERE id = :id', [
+    'id' => $post['id']
+]);
+
+
+$pageTitle = $post['title'];
+
+require(BASE_PATH . '/templates/posts/show.php');
