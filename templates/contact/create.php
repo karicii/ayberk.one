@@ -1,4 +1,10 @@
-<?php require(BASE_PATH . '/templates/partials/header.php'); ?>
+<?php 
+// config dosyasını çağırarak Site Key'i alıyoruz
+$config = require(BASE_PATH . '/core/config.php');
+$turnstileSiteKey = $config['cloudflare']['site_key'] ?? '';
+
+require(BASE_PATH . '/templates/partials/header.php'); 
+?>
 
 <main class="container">
     <div class="contact-form-container">
@@ -32,9 +38,19 @@
                 <textarea id="message" name="message" rows="6" required><?= $old['message'] ?? '' ?></textarea>
             </div>
             
-            <button type="submit" class="button button-primary" style="width: 100%; padding: 12px;">Gönder</button>
+            <?php if ($turnstileSiteKey): ?>
+            <div class="cf-turnstile" data-sitekey="<?= htmlspecialchars($turnstileSiteKey) ?>" data-theme="dark"></div>
+            <?php endif; ?>
+            
+            <button type="submit" class="button button-primary" style="width: 100%; padding: 12px; margin-top: 1.5rem;">Gönder</button>
         </form>
     </div>
 </main>
 
-<?php require(BASE_PATH . '/templates/partials/footer.php'); ?>
+<?php 
+require(BASE_PATH . '/templates/partials/footer.php'); 
+
+if ($turnstileSiteKey) {
+    echo '<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>';
+}
+?>

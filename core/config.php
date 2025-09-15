@@ -11,5 +11,9 @@ return [
         'port' => $_ENV['DB_PORT'] ?? 3306,
         'dbname' => $_ENV['DB_NAME'] ?? 'testdb',
         'charset' => 'utf8mb4'
+     ],
+    'cloudflare' => [
+        'site_key' => $_ENV['CLOUDFLARE_SITE_KEY'] ?? '',
+        'secret_key' => $_ENV['CLOUDFLARE_SECRET_KEY'] ?? ''
     ]
 ];

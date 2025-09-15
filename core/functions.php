@@ -62,18 +62,18 @@ function generate_json_ld(array $post): string
 
 function set_security_headers() {
     header('X-Content-Type-Options: nosniff');
-
     header('X-Frame-Options: DENY');
-
     header('X-XSS-Protection: 1; mode=block');
-
     header('Strict-Transport-Security: max-age=31536000; includeSubDomains');
 
     $csp = "default-src 'self'; "; 
-    $csp .= "script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; "; 
+    // Cloudflare'in script adresini ekliyoruz.
+    $csp .= "script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://challenges.cloudflare.com; "; 
     $csp .= "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; ";
     $csp .= "font-src https://fonts.gstatic.com; "; 
     $csp .= "img-src 'self' data:; ";
+    // Cloudflare'in widget'ı (iframe) için izin ekliyoruz.
+    $csp .= "frame-src https://challenges.cloudflare.com; ";
     $csp .= "form-action 'self'; ";
     $csp .= "object-src 'none'; "; 
     $csp .= "frame-ancestors 'none'; ";
@@ -81,4 +81,34 @@ function set_security_headers() {
     $csp .= "upgrade-insecure-requests;"; 
 
     header("Content-Security-Policy: " . $csp);
+}
+
+function verify_turnstile(string $token, string $ip): bool
+{
+    $config = require BASE_PATH . '/core/config.php';
+    $secretKey = $config['cloudflare']['secret_key'];
+
+    if (!$secretKey) {
+        // Eğer gizli anahtar ayarlanmamışsa, geliştirme ortamı için true dönebiliriz.
+        // Canlıda mutlaka ayarlanmalıdır.
+        return true; 
+    }
+
+    $payload = [
+        'secret' => $secretKey,
+        'response' => $token,
+        'remoteip' => $ip
+    ];
+
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, 'https://challenges.cloudflare.com/turnstile/v0/siteverify');
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
+    $response = curl_exec($ch);
+    curl_close($ch);
+
+    $result = json_decode($response, true);
+    
+    return $result['success'] ?? false;
 }
