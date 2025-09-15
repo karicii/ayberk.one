@@ -12,6 +12,17 @@ if (!$post) {
     die();
 }
 
+// YENİ EKLENEN BÖLÜM BAŞLANGICI
+// Yazıya ait kategorileri çek
+$categories = $db->query(
+    'SELECT c.name, c.slug FROM categories c
+     JOIN post_categories pc ON c.id = pc.category_id
+     WHERE pc.post_id = :post_id',
+    [':post_id' => $post['id']]
+)->findAll();
+// YENİ EKLENEN BÖLÜM SONU
+
+
 // SEO Meta Etiketleri
 $pageTitle = $post['title'];
 $pageDescription = substr(strip_tags($post['body']), 0, 155) . '...';
@@ -19,8 +30,6 @@ $pageDescription = substr(strip_tags($post['body']), 0, 155) . '...';
 // SEO Yapısal Veri
 $jsonLdSchema = generate_json_ld($post);
 
-// --- YENİ EKLENEN SATIR ---
-// Bu değişken, header ve footer'a bu sayfanın özel bir yerleşime sahip olduğunu söyleyecek.
 $isPostShowPage = true; 
 
 view('posts/show.php', [
@@ -28,5 +37,6 @@ view('posts/show.php', [
     'pageDescription' => $pageDescription,
     'post' => $post,
     'jsonLdSchema' => $jsonLdSchema,
-    'isPostShowPage' => $isPostShowPage // Değişkeni view'e gönder
+    'isPostShowPage' => $isPostShowPage,
+    'categories' => $categories // Kategorileri view'e gönder
 ]);

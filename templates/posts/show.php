@@ -43,13 +43,16 @@ require_once BASE_PATH . '/core/AiTranslate.php';
 
 <?php // Sağ sidebar ?>
 <aside class="post-sidebar-right">
-    <div class="sidebar-widget">
-        <h3 class="widget-title">Kategoriler</h3>
+   <div class="sidebar-widget">
+    <h3 class="widget-title">Kategoriler</h3>
+    <?php if (!empty($categories)): ?>
         <ul class="category-list">
-            <li><a href="#">Yazılım Geliştirme</a></li>
-            <li><a href="#">Web Tasarım</a></li>
+            <?php foreach ($categories as $category): ?>
+                <li><a href="/category/<?= htmlspecialchars($category['slug']) ?>"><?= htmlspecialchars($category['name']) ?></a></li>
+            <?php endforeach; ?>
         </ul>
-    </div>
+    <?php endif; ?>
+</div>
     <div class="sidebar-widget">
         <h3 class="widget-title">Paylaş</h3>
        <div class="share-buttons">
