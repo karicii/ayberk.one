@@ -16,3 +16,4 @@ class App {
         return static::$registry[$key];
     }
 }
+#respect LO // ARPANET

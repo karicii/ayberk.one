@@ -26,6 +26,8 @@ require BASE_PATH . '/core/functions.php';
 
 set_security_headers(); 
 
+require BASE_PATH . '/core/App.php';
+
 function load_env(string $path): void {
     if (!file_exists($path)) { throw new Exception(".env file not found."); }
     $lines = file($path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
@@ -37,22 +39,17 @@ function load_env(string $path): void {
 }
 load_env(BASE_PATH . '/.env');
 
-// --- OTOMATİK YÜKLEYİCİ ---
-// Projedeki tüm sınıflar bu fonksiyon sayesinde otomatik olarak yüklenecek.
 spl_autoload_register(function ($class) {
-    // Örnek: 'core\Router' girdisini 'core/Router.php' yapar
-    $class_path = BASE_PATH . '/' . str_replace('\\', DIRECTORY_SEPARATOR, $class) . '.php';
+    $class_path = BASE_PATH . '/core/' . $class . '.php';
     if (file_exists($class_path)) {
         require $class_path;
     }
 });
 
-
 $config = require BASE_PATH . '/core/config.php';
+$db = new Database($config['database'], $_ENV['DB_USER'], $_ENV['DB_PASS']);
 
-// Otomatik yükleyici sayesinde sınıflar artık doğrudan "new" ile çağrılabilir.
-$db = new core\Database($config['database'], $_ENV['DB_USER'], $_ENV['DB_PASS']);
-core\App::bind('database', $db);
+App::bind('database', $db);
 
 $router = require BASE_PATH . '/routes.php';
 
