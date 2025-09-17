@@ -63,5 +63,5 @@ $db->query('INSERT INTO messages(name, email, message, ip_address, user_agent) V
 ]);
 
 $_SESSION['success_message'] = 'Mesajınız başarıyla gönderildi!';
-header('location: /');
+header('location: /contact');
 exit();

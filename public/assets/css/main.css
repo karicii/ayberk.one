@@ -531,3 +531,16 @@ a:hover {
     border-color: var(--color-primary);
     color: var(--color-background);
 }
+.success-message {
+    background-color: #1C4B34; /* Koyu Yeşil Arkaplan */
+    border: 1px solid #38A169; /* Yeşil Kenarlık */
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    color: #F0FFF4; /* Açık Yeşil Yazı Rengi */
+}
+
+.success-message p {
+    margin: 0;
+    color: #F0FFF4; /* Yazı rengini burada da belirtelim */
+}

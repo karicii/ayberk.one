@@ -10,6 +10,14 @@ require(BASE_PATH . '/templates/partials/header.php');
     <div class="contact-form-container">
         <h1>Bana Ulaşın</h1>
 
+        <?php // --- BAŞARI MESAJI BÖLÜMÜ --- ?>
+        <?php if (isset($success_message) && $success_message) : ?>
+            <div class="success-message">
+                <p><?= htmlspecialchars($success_message) ?></p>
+            </div>
+        <?php endif; ?>
+
+        <?php // --- HATA MESAJLARI BÖLÜMÜ --- ?>
         <?php if (isset($errors) && !empty($errors)) : ?>
             <div class="errors">
                 <?php foreach ($errors as $error) : ?>
