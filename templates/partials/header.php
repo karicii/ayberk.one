@@ -62,9 +62,23 @@
             </form>
         </header>
         <main class="site-content">
-        <?php if (isset($_SESSION['success_message'])) : ?>
+        <?php if (isset($_SESSION['success_message'])): ?>
             <div class="alert alert-success">
-                <?= $_SESSION['success_message'] ?>
+                <?= htmlspecialchars($_SESSION['success_message']) ?>
                 <?php unset($_SESSION['success_message']); ?>
+            </div>
+        <?php endif; ?>
+        
+        <?php if (isset($_SESSION['error_message'])): ?>
+            <div class="alert alert-error">
+                <?= htmlspecialchars($_SESSION['error_message']) ?>
+                <?php unset($_SESSION['error_message']); ?>
+            </div>
+        <?php endif; ?>
+        
+        <?php if (isset($_SESSION['info_message'])): ?>
+            <div class="alert alert-info">
+                <?= htmlspecialchars($_SESSION['info_message']) ?>
+                <?php unset($_SESSION['info_message']); ?>
             </div>
         <?php endif; ?>

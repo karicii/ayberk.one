@@ -183,6 +183,32 @@ a:hover {
     color: var(--color-secondary);
 }
 
+/* --- Alert Messages --- */
+.alert {
+    padding: 1rem 1.25rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 1.5rem;
+    border-left: 4px solid;
+}
+
+.alert-success {
+    background: rgba(34, 197, 94, 0.1);
+    border-color: #22c55e;
+    color: #22c55e;
+}
+
+.alert-error {
+    background: rgba(239, 68, 68, 0.1);
+    border-color: #ef4444;
+    color: #ef4444;
+}
+
+.alert-info {
+    background: rgba(59, 130, 246, 0.1);
+    border-color: #3b82f6;
+    color: #3b82f6;
+}
+
 /* --- Tekil Yazı Sayfası --- */
 .post {
     padding-top: 1rem;
@@ -1137,27 +1163,20 @@ a:hover {
    SEARCH STYLES
    ================================================================= */
 
-/* Header Search */
-.site-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 2rem;
-}
-
+/* Header Search - Minimal */
 .header-search {
     display: flex;
     align-items: center;
-    background: var(--color-surface);
+    background: transparent;
     border: 1px solid var(--color-border);
     border-radius: var(--border-radius);
-    padding: 0.5rem 0.75rem;
+    padding: 0.4rem 0.75rem;
     transition: border-color 0.2s ease;
-    max-width: 280px;
+    max-width: 240px;
 }
 
 .header-search:focus-within {
-    border-color: var(--color-accent);
+    border-color: var(--color-primary);
 }
 
 .header-search input {
@@ -1192,138 +1211,92 @@ a:hover {
 }
 
 /* Search Page */
-.search-page {
-    max-width: 800px;
-    margin: 0 auto;
+.search-page-header {
+    margin-bottom: 2rem;
 }
 
-.search-header {
-    margin-bottom: 3rem;
-}
-
-.search-header h1 {
-    font-size: 2.5rem;
+.search-page-header h1 {
+    font-size: 2rem;
     margin-bottom: 1.5rem;
-    text-align: center;
 }
 
-.search-form-main {
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.search-input-wrapper {
+.search-form {
     display: flex;
-    align-items: center;
+    gap: 0.75rem;
+    max-width: 600px;
+}
+
+.search-form input {
+    flex: 1;
     background: var(--color-surface);
-    border: 2px solid var(--color-border);
-    border-radius: var(--border-radius-lg);
-    padding: 1rem 1.25rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    padding: 0.875rem 1rem;
+    color: var(--color-primary);
+    font-size: 1rem;
     transition: border-color 0.2s ease;
 }
 
-.search-input-wrapper:focus-within {
-    border-color: var(--color-accent);
-}
-
-.search-input-wrapper svg {
-    color: var(--color-secondary);
-    margin-right: 1rem;
-    flex-shrink: 0;
-}
-
-.search-input-wrapper input {
-    flex: 1;
-    background: transparent;
-    border: none;
-    color: var(--color-primary);
-    font-size: 1.1rem;
+.search-form input:focus {
     outline: none;
-    min-width: 0;
+    border-color: var(--color-primary);
 }
 
-.search-input-wrapper input::placeholder {
+.search-form input::placeholder {
     color: var(--color-secondary);
 }
 
-.search-input-wrapper button {
-    background: var(--color-accent);
-    color: white;
-    border: none;
-    padding: 0.75rem 1.5rem;
+.search-form button {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
     border-radius: var(--border-radius);
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.2s ease;
-    margin-left: 1rem;
-    white-space: nowrap;
-}
-
-.search-input-wrapper button:hover {
-    background: var(--color-accent-hover);
-}
-
-.search-meta {
+    padding: 0.875rem 1.25rem;
     color: var(--color-secondary);
-    margin-bottom: 2rem;
-    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
 }
 
-.search-meta strong {
+.search-form button:hover {
+    border-color: var(--color-primary);
     color: var(--color-primary);
 }
 
-.no-results {
-    text-align: center;
-    padding: 4rem 2rem;
-}
-
-.no-results svg {
-    color: var(--color-secondary);
+.search-results-info {
     margin-bottom: 1.5rem;
-    opacity: 0.5;
-}
-
-.no-results h2 {
-    font-size: 1.75rem;
-    margin-bottom: 0.75rem;
-}
-
-.no-results p {
     color: var(--color-secondary);
-    font-size: 1.05rem;
+    font-size: 0.95rem;
 }
 
-.search-tips {
+.search-results-info strong {
+    color: var(--color-primary);
+}
+
+.search-notice,
+.search-empty {
     background: var(--color-surface);
     border: 1px solid var(--color-border);
     border-radius: var(--border-radius-lg);
-    padding: 2rem;
-    margin-top: 3rem;
-}
-
-.search-tips h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-}
-
-.search-tips ul {
-    list-style: none;
-}
-
-.search-tips li {
-    padding: 0.5rem 0;
-    padding-left: 1.5rem;
-    position: relative;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
     color: var(--color-secondary);
-    line-height: 1.6;
 }
 
-.search-tips li::before {
-    content: "→";
-    position: absolute;
-    left: 0;
-    color: var(--color-accent);
+.search-notice p,
+.search-empty p {
+    margin: 0;
+}
+
+/* Ana stil ile uyumlu meta bilgileri */
+.post-list-meta {
+    color: var(--color-secondary);
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+}
+
+.post-list-meta .separator {
+    margin: 0 0.5rem;
 }
 
 /* Mobile Search */
@@ -1343,24 +1316,127 @@ a:hover {
         margin-top: 1rem;
     }
 
-    .search-header h1 {
-        font-size: 2rem;
+    .search-page-header h1 {
+        font-size: 1.75rem;
     }
 
-    .search-input-wrapper {
-        padding: 0.875rem 1rem;
+    .search-form {
+        flex-direction: column;
     }
 
-    .search-input-wrapper input {
-        font-size: 1rem;
+    .search-form button {
+        width: 100%;
+        justify-content: center;
     }
 
-    .search-input-wrapper button {
-        padding: 0.625rem 1rem;
-        font-size: 0.9rem;
+    .post-list-item {
+        flex-direction: column;
+        align-items: flex-start;
     }
 
-    .no-results {
-        padding: 3rem 1rem;
+    .post-list-image-container {
+        width: 100%;
+        height: 180px;
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+}
+
+/* =================================================================
+   NEWSLETTER STYLES
+   ================================================================= */
+
+.newsletter-section {
+    background: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    padding: 3rem 0;
+    margin-top: 3rem;
+    border-radius: 15px;
+}
+
+.newsletter-container {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+.newsletter-content {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.newsletter-content h3 {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-primary);
+}
+
+.newsletter-content p {
+    color: var(--color-secondary);
+    font-size: 1.05rem;
+}
+
+.newsletter-form {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.newsletter-input-group {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.newsletter-input-group input {
+    flex: 1;
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    padding: 0.875rem 1rem;
+    color: var(--color-primary);
+    font-size: 1rem;
+    transition: border-color 0.2s ease;
+}
+
+.newsletter-input-group input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+}
+
+.newsletter-input-group input::placeholder {
+    color: var(--color-secondary);
+}
+
+.newsletter-input-group button {
+    background: var(--color-primary);
+    color: var(--color-background);
+    border: none;
+    border-radius: var(--border-radius);
+    padding: 0.875rem 1.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+    white-space: nowrap;
+}
+
+.newsletter-input-group button:hover {
+    opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+    .newsletter-section {
+        padding: 2rem 0;
+    }
+
+    .newsletter-content h3 {
+        font-size: 1.5rem;
+    }
+
+    .newsletter-input-group {
+        flex-direction: column;
+    }
+
+    .newsletter-input-group button {
+        width: 100%;
     }
 }

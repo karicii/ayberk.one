@@ -712,6 +712,22 @@ body.login-page-body {
     color: var(--color-secondary);
 }
 
+.badge-success {
+    background: rgba(34, 197, 94, 0.15);
+    border-color: rgba(34, 197, 94, 0.3);
+    color: #22c55e;
+}
+
+.badge-muted {
+    background: rgba(115, 115, 115, 0.15);
+    border-color: rgba(115, 115, 115, 0.3);
+    color: #737373;
+}
+
+.text-muted {
+    color: var(--color-secondary);
+}
+
 /* Etiket Tablosu Özel Ayarları */
 .admin-table.tags-table {
     table-layout: auto;

@@ -19,6 +19,10 @@ $router->get('/sitemap.xml', 'sitemap.php');
 $router->get('/contact', 'contact/create.php');
 $router->post('/contact', 'contact/store.php');
 
+// Newsletter
+$router->post('/newsletter/subscribe', 'newsletter/subscribe.php');
+$router->get('/newsletter/unsubscribe', 'newsletter/unsubscribe.php');
+
 // Admin - Yazı Yönetimi
 $router->get('/admin', 'admin/index.php'); 
 $router->get('/admin/posts/create', 'posts/create.php');
@@ -47,6 +51,11 @@ $router->post('/admin/tags', 'admin/tags/store.php');
 $router->get('/admin/tags/edit/{id}', 'admin/tags/edit.php');
 $router->patch('/admin/tags/{id}', 'admin/tags/update.php');
 $router->delete('/admin/tags/{id}', 'admin/tags/destroy.php');
+
+// Admin - Newsletter Yönetimi
+$router->get('/admin/newsletter', 'admin/newsletter/index.php');
+$router->patch('/admin/newsletter/reactivate', 'admin/newsletter/reactivate.php');
+$router->delete('/admin/newsletter/delete', 'admin/newsletter/delete.php');
 
 // Admin - Giriş/Çıkış
 $router->get('/login', 'auth/create.php');

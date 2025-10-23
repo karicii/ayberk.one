@@ -1,4 +1,28 @@
 </main>
+        
+        <!-- Newsletter Section -->
+        <div class="newsletter-section">
+            <div class="newsletter-container">
+                <div class="newsletter-content">
+                    <h3>Bültene Abone Ol</h3>
+                    <p>Yeni yazılardan haberdar olmak için e-posta adresinizi bırakın.</p>
+                </div>
+                <form action="/newsletter/subscribe" method="POST" class="newsletter-form">
+                    <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?? '' ?>">
+                    <div class="newsletter-input-group">
+                        <input 
+                            type="email" 
+                            name="email" 
+                            placeholder="E-posta adresiniz" 
+                            required
+                            aria-label="E-posta adresi"
+                        >
+                        <button type="submit">Abone Ol</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
         <footer class="site-footer">
             <div class="footer-content">
                 <p>&copy; <?= date('Y') ?> Ayberk Arıcı. Tüm hakları saklıdır.</p>
