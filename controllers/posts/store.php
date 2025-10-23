@@ -63,15 +63,50 @@ if (empty($errors)) {
         }
     }
 
+    // 4. Etiketleri işle (inline input'tan)
+    if (!empty($_POST['tags_input'])) {
+        // Virgülle ayrılmış etiketleri temizle ve diziye çevir
+        $tagNames = array_map('trim', explode(',', $_POST['tags_input']));
+        $tagNames = array_filter($tagNames); // Boşları temizle
+        
+        foreach ($tagNames as $tagName) {
+            // Slug oluştur
+            $tagSlug = slugify($tagName);
+            
+            // Etiket var mı kontrol et
+            $existingTag = $db->query('SELECT id FROM tags WHERE slug = :slug', [':slug' => $tagSlug])->find();
+            
+            if ($existingTag) {
+                // Var olan etiketi kullan
+                $tagId = $existingTag['id'];
+            } else {
+                // Yeni etiket oluştur
+                $db->query('INSERT INTO tags (name, slug) VALUES (:name, :slug)', [
+                    ':name' => $tagName,
+                    ':slug' => $tagSlug
+                ]);
+                $tagId = $db->connection->lastInsertId();
+            }
+            
+            // Post-tag ilişkisi ekle
+            $db->query('INSERT INTO post_tags (post_id, tag_id) VALUES (:post_id, :tag_id)', [
+                ':post_id' => $lastPostId,
+                ':tag_id' => $tagId
+            ]);
+        }
+    }
+
     header('Location: /admin');
     exit();
 }
 
 // Hata varsa formu tekrar göster
 $categories = $db->query('SELECT * FROM categories ORDER BY name ASC')->findAll();
+$tags = $db->query('SELECT * FROM tags ORDER BY name ASC')->findAll();
 $pageTitle = 'Yeni Yazı Oluştur';
 view('posts/create.php', [
     'pageTitle' => $pageTitle,
     'categories' => $categories,
+    'tags' => $tags,
     'errors' => $errors
 ]);

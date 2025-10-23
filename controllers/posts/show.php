@@ -27,18 +27,33 @@ $categories = $db->query(
     [':post_id' => $post['id']]
 )->findAll();
 
-// 5. SEO ve sayfa için gerekli değişkenleri hazırla
+// 5. Yazıya ait etiketleri çek
+$tags = $db->query(
+    'SELECT t.name, t.slug FROM tags t
+     JOIN post_tags pt ON t.id = pt.tag_id
+     WHERE pt.post_id = :post_id
+     ORDER BY t.name ASC',
+    [':post_id' => $post['id']]
+)->findAll();
+
+// 6. SEO ve sayfa için gerekli değişkenleri hazırla
 $pageTitle = $post['title'];
 $pageDescription = substr(strip_tags($post['body']), 0, 155) . '...';
-$jsonLdSchema = generate_json_ld($post);
+
+// SEO Keywords (etiketlerden oluştur)
+$keywords = !empty($tags) ? array_column($tags, 'name') : [];
+
+$jsonLdSchema = generate_json_ld($post, $tags);
 $isPostShowPage = true; 
 
-// 6. Tüm verileri view'e gönder
+// 7. Tüm verileri view'e gönder
 view('posts/show.php', [
     'pageTitle' => $pageTitle,
     'pageDescription' => $pageDescription,
     'post' => $post,
     'jsonLdSchema' => $jsonLdSchema,
     'isPostShowPage' => $isPostShowPage,
-    'categories' => $categories // Kategorileri view'e gönder
+    'categories' => $categories, // Kategorileri view'e gönder
+    'tags' => $tags, // Etiketleri view'e gönder
+    'keywords' => $keywords // SEO keywords
 ]);

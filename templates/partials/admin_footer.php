@@ -1,5 +1,12 @@
-</main>
-    </div> <script>
+    </main>
+    </div> 
+    
+    <script>
+        // Lucide iconlarını render et
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+        
         const quill = new Quill('#editor', {
             modules: {
                 toolbar: [

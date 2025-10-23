@@ -26,7 +26,7 @@ function slugify(string $text): string
     return strtolower($text);
 }
 
-function generate_json_ld(array $post): string
+function generate_json_ld(array $post, array $tags = []): string
 {
     $config = require BASE_PATH . '/core/config.php';
     $baseUrl = $config['app']['url'];
@@ -42,7 +42,7 @@ function generate_json_ld(array $post): string
         'description' => substr(strip_tags($post['body']), 0, 155) . '...',
         'author' => [
             '@type' => 'Person',
-            'name' => 'Ayberk',
+            'name' => 'Ayberk Arıcı',
             'url' => $baseUrl,
         ],
         'publisher' => [
@@ -50,12 +50,36 @@ function generate_json_ld(array $post): string
             'name' => 'Ayberk.one',
             'logo' => [
                 '@type' => 'ImageObject',
+                'url' => $baseUrl . '/assets/images/logo.png',
             ],
         ],
-        'datePublished' => date('Y-m-d', strtotime($post['created_at'])),
+        'datePublished' => date('c', strtotime($post['created_at'])),
+        'dateModified' => date('c', strtotime($post['updated_at'])),
     ];
+
+    // Etiketleri keywords olarak ekle
+    if (!empty($tags)) {
+        $schema['keywords'] = implode(', ', array_column($tags, 'name'));
+    }
+
+    // Görsel varsa ekle
+    if (!empty($post['image_path'])) {
+        $schema['image'] = [
+            '@type' => 'ImageObject',
+            'url' => $baseUrl . $post['image_path'],
+        ];
+    }
+
+    // Okuma süresi ekle
+    if (!empty($post['reading_time'])) {
+        $schema['timeRequired'] = 'PT' . $post['reading_time'] . 'M';
+    }
+
+    // Kelime sayısı ekle
+    $wordCount = str_word_count(strip_tags($post['body']));
+    $schema['wordCount'] = $wordCount;
     
-    $json = json_encode($schema, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
+    $json = json_encode($schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
     
     return '<script type="application/ld+json">' . $json . '</script>';
 }

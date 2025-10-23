@@ -4,17 +4,17 @@
     <h1>Gelen Mesajlar</h1>
 </div>
 
-<div class="content-panel">
-    <?php if (isset($_SESSION['success_message'])) : ?>
-        <div class="alert alert-success">
-            <?= $_SESSION['success_message'] ?>
-            <?php unset($_SESSION['success_message']); ?>
-        </div>
-    <?php endif; ?>
+<?php if (isset($_SESSION['success_message'])) : ?>
+    <div class="alert alert-success">
+        <?= $_SESSION['success_message'] ?>
+        <?php unset($_SESSION['success_message']); ?>
+    </div>
+<?php endif; ?>
 
+<div class="content-panel">
     <div class="message-inbox">
         <?php if (empty($messages)) : ?>
-            <p class="empty-state">Gelen kutunuzda hiç mesaj yok.</p>
+            <div class="empty-state">Gelen kutunuzda hiç mesaj yok.</div>
         <?php else : ?>
             <?php foreach ($messages as $message) : ?>
                 <a href="/admin/messages/<?= $message['id'] ?>" class="message-item">

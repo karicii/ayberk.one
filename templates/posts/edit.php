@@ -1,10 +1,17 @@
 <?php require(BASE_PATH . '/templates/partials/admin_header.php') ?>
 
-    <h1><?= $pageTitle ?></h1>
+    <div class="content-header">
+        <h1><?= $pageTitle ?></h1>
+        <a href="/admin" class="button">
+            <i data-lucide="arrow-left"></i>
+            <span>Geri Dön</span>
+        </a>
+    </div>
 
-    <form id="post-form" class="admin-form" action="/admin/posts/<?= $post['id'] ?>" method="POST" enctype="multipart/form-data">
-        <input type="hidden" name="_method" value="PATCH">
-        <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
+    <div class="content-panel">
+        <form id="post-form" class="form" action="/admin/posts/<?= $post['id'] ?>" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="_method" value="PATCH">
+            <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
         
         <div class="form-group">
             <label for="title">Başlık</label>
@@ -30,6 +37,21 @@
                 <?php endforeach; ?>
             </div>
         </div>
+
+        <div class="form-group">
+            <label>Etiketler</label>
+            <input 
+                type="text" 
+                id="tags_input" 
+                name="tags_input" 
+                value="<?= htmlspecialchars($postTagsString ?? '') ?>"
+                placeholder="php, javascript, docker (virgülle ayırın)"
+                class="form-control"
+            >
+            <small class="form-help">Etiketleri virgülle ayırarak yazın. Yeni etiketler otomatik oluşturulacak. Örn: php, javascript, docker</small>
+            <div id="tags_preview" class="tags-preview" style="margin-top: 0.75rem;"></div>
+        </div>
+
         <div class="form-group">
             <label for="body">İçerik</label>
             <div id="editor" style="min-height: 250px;"><?= $post['body'] ?? '' ?></div>
@@ -46,9 +68,14 @@
             </div>
         <?php endif; ?>
 
-        <div class="form-group">
-            <button type="submit" class="button button-primary">Güncelle</button>
+        <div class="form-actions">
+            <button type="submit" class="button button-primary">
+                <i data-lucide="save"></i>
+                <span>Güncelle</span>
+            </button>
+            <a href="/admin" class="button">İptal</a>
         </div>
-    </form>
+        </form>
+    </div>
 
 <?php require(BASE_PATH . '/templates/partials/admin_footer.php') ?>

@@ -38,6 +38,19 @@ require_once BASE_PATH . '/core/AiTranslate.php';
         <div class="post-content">
             <?= $post['body'] ?>
         </div>
+
+        <?php if (!empty($tags)): ?>
+            <footer class="post-footer">
+                <div class="post-tags">
+                    <span class="tags-label">Etiketler:</span>
+                    <?php foreach ($tags as $tag): ?>
+                        <a href="/tag/<?= htmlspecialchars($tag['slug']) ?>" class="tag-badge">
+                            <?= htmlspecialchars($tag['name']) ?>
+                        </a>
+                    <?php endforeach; ?>
+                </div>
+            </footer>
+        <?php endif; ?>
     </article>
 </main>
 

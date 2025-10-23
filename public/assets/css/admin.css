@@ -32,22 +32,28 @@
 }
 
 /* --- YENİ BUTON SİSTEMİ --- */
-.button, button {
-    display: inline-flex; /* İkon ve metni hizalamak için */
-    align-items: center;
-    justify-content: center; /* Yatayda da ortalamak için eklendi */
-    gap: 0.5rem; /* İkon ve metin arası boşluk */
+.button, 
+button,
+.actions .button,
+.actions button,
+.content-header .button {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0 !important;
     background-color: transparent;
     border: 1px solid var(--color-surface);
     color: var(--color-secondary);
-    padding: 8px 14px;
+    padding: 8px 16px !important;
     border-radius: var(--border-radius);
     cursor: pointer;
     text-decoration: none;
     font-size: 14px;
-    font-weight: 500; /* Medium ağırlık */
+    font-weight: 500;
     font-family: var(--font-family-sans);
     transition: all 0.2s ease;
+    white-space: nowrap;
+    min-height: 36px;
 }
 
 .button:hover, button:hover {
@@ -56,9 +62,42 @@
     color: var(--color-background);
 }
 
-.button i, button i {
-    width: 16px;
-    height: 16px;
+.button i, 
+button i,
+.actions .button i,
+.actions button i {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 16px !important;
+    height: 16px !important;
+    min-width: 16px !important;
+    min-height: 16px !important;
+    flex-shrink: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.button svg, 
+button svg,
+.actions .button svg,
+.actions button svg {
+    width: 16px !important;
+    height: 16px !important;
+    display: block !important;
+    margin: 0 auto !important;
+}
+
+.button span, 
+button span,
+.actions .button span,
+.actions button span {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1.2 !important;
 }
 
 /* Birincil Buton */
@@ -104,9 +143,14 @@
     align-items: center;
     margin-bottom: 2rem;
 }
+
 .content-header h1 {
     font-size: 1.75rem;
     margin: 0;
+}
+
+.content-header .button {
+    margin-left: auto;
 }
 
 /* İçerik Paneli */
@@ -114,7 +158,12 @@
     background-color: var(--color-surface);
     border: 1px solid var(--color-border);
     border-radius: var(--border-radius-lg);
-    overflow: hidden; /* Tablonun köşelerini yuvarlak tutmak için */
+    overflow: hidden;
+}
+
+/* Form container için padding */
+.content-panel .form {
+    padding: 2rem;
 }
 
 
@@ -122,13 +171,39 @@
 .admin-table {
     width: 100%;
     border-collapse: collapse;
+    margin: 0;
+    table-layout: fixed;
 }
 
 .admin-table th, .admin-table td {
     padding: 1rem 1.5rem;
     text-align: left;
     border-bottom: 1px solid var(--color-border);
-    vertical-align: middle; /* Hücre içeriğini dikeyde ortala */
+    vertical-align: middle;
+}
+
+.admin-table th:last-child,
+.admin-table td:last-child {
+    text-align: right !important;
+}
+
+.admin-table td:first-child {
+    max-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 50%;
+}
+
+.admin-table td:nth-child(2) {
+    width: 20%;
+    white-space: nowrap;
+}
+
+.admin-table td:nth-child(3) {
+    width: 30%;
+    white-space: nowrap;
+    text-align: right !important;
 }
 
 .admin-table tbody tr:last-child td {
@@ -141,7 +216,7 @@
     text-transform: uppercase;
     font-weight: 600;
     letter-spacing: 0.5px;
-    background-color: #1f1f1f; /* Hafif koyu başlık */
+    background-color: #1a1a1a;
 }
 
 .admin-table tbody tr {
@@ -149,19 +224,55 @@
 }
 
 .admin-table tbody tr:hover {
-    background-color: #2a2a2a;
+    background-color: #1f1f1f;
 }
 
-/* --- DÜZENLENEN KISIM --- */
+
 .actions {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 0.5rem;
+    display: flex !important;
+    justify-content: flex-end !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    text-align: right !important;
+    width: 100% !important;
+}
+
+.admin-table td.actions {
+    width: 100% !important;
+}
+
+.actions .button,
+.actions button {
+    margin: 0 !important;
+    padding: 8px 14px !important;
+}
+
+.actions form {
+    margin: 0 !important;
+    display: inline-flex !important;
+}
+
+.actions .button i,
+.actions .button svg,
+.actions button i,
+.actions button svg {
+    display: none !important;
+}
+
+.content-header .button,
+.form-actions .button {
+    gap: 0.4rem !important;
+}
+
+.content-header .button i,
+.content-header .button svg,
+.form-actions .button i,
+.form-actions .button svg {
+    display: inline-flex !important;
 }
 
 .actions-header {
-    text-align: right;
+    text-align: right !important;
 }
 
 .text-center {
@@ -171,15 +282,13 @@
 .empty-state {
     padding: 3rem 1.5rem;
     color: var(--color-secondary);
+    text-align: center;
 }
 
 
 /* Admin Formları */
-.admin-form {
-    background-color: var(--color-surface);
-    border-radius: var(--border-radius);
-    padding: 2rem;
-    margin-top: 2rem;
+.form {
+    max-width: 100%;
 }
 
 .form-group {
@@ -190,21 +299,39 @@
     display: block;
     margin-bottom: 0.5rem;
     font-weight: 600;
-    color: var(--color-secondary);
+    color: var(--color-primary);
+    font-size: 0.9rem;
 }
 
 .form-group input[type="text"],
 .form-group input[type="email"],
 .form-group input[type="password"],
-.form-group textarea {
+.form-group textarea,
+.form-control {
     width: 100%;
-    padding: 12px;
+    padding: 12px 16px;
     background-color: var(--color-background);
-    border: 1px solid #333;
+    border: 1px solid var(--color-border);
     border-radius: var(--border-radius);
     color: var(--color-primary);
-    font-size: 16px;
+    font-size: 15px;
     font-family: var(--font-family-sans);
+    transition: border-color 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-control:focus {
+    outline: none;
+    border-color: var(--color-primary);
+}
+
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border);
 }
 
 /* --- Quill Editor Stilleri --- */
@@ -295,21 +422,25 @@
     margin-bottom: 1.5rem;
     color: #f0fdf4;
 }
-.message-inbox {
-    background-color: var(--color-surface);
-    border-radius: var(--border-radius-lg);
-    border: 1px solid var(--color-border);
-    overflow: hidden;
+
+.alert.alert-error {
+    background-color: #3A1A1A;
+    border: 1px solid #ef4444;
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    color: #fee2e2;
 }
 
 .message-item {
     display: flex;
     align-items: center;
-    padding: 1rem 1.5rem;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
     border-bottom: 1px solid var(--color-border);
     text-decoration: none;
     color: var(--color-secondary);
-    transition: background-color var(--transition-fast);
+    transition: background-color 0.15s ease;
 }
 
 .message-item:last-child {
@@ -317,38 +448,43 @@
 }
 
 .message-item:hover {
-    background-color: #2a2a2a;
-    cursor: pointer;
+    background-color: #1f1f1f;
 }
 
 .message-sender {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     font-weight: 600;
     color: var(--color-primary);
-    width: 200px;
+    min-width: 180px;
     flex-shrink: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+}
+
+.message-sender i {
+    width: 20px;
+    height: 20px;
+    color: var(--color-secondary);
 }
 
 .message-snippet {
     flex-grow: 1;
+    color: var(--color-secondary);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    padding: 0 1.5rem;
+    font-size: 0.95rem;
 }
 
 .message-date {
-    font-size: 0.85rem;
+    font-size: 0.875rem;
     color: var(--color-muted);
+    min-width: 130px;
+    text-align: right;
     flex-shrink: 0;
 }
 
 .message-view {
-    background-color: var(--color-surface);
-    border-radius: var(--border-radius-lg);
-    border: 1px solid var(--color-border);
     padding: 2rem;
 }
 
@@ -554,4 +690,76 @@ body.login-page-body {
     .lists-grid {
         grid-template-columns: 1fr;
     }
+}
+/* Badge/Pill */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 28px;
+    padding: 0.25rem 0.65rem;
+    background: rgba(16, 163, 127, 0.15);
+    border: 1px solid rgba(16, 163, 127, 0.3);
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--color-primary);
+}
+
+.badge.badge-secondary {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--color-border);
+    color: var(--color-secondary);
+}
+
+/* Etiket Tablosu Özel Ayarları */
+.admin-table.tags-table {
+    table-layout: auto;
+}
+
+.admin-table.tags-table th:nth-child(1),
+.admin-table.tags-table td:nth-child(1) {
+    width: 15%;
+    min-width: 120px;
+}
+
+.admin-table.tags-table th:nth-child(2),
+.admin-table.tags-table td:nth-child(2) {
+    width: 15%;
+    min-width: 100px;
+}
+
+.admin-table.tags-table th:nth-child(3),
+.admin-table.tags-table td:nth-child(3) {
+    width: 35%;
+    max-width: none;
+    white-space: normal;
+    text-align: left !important;
+}
+
+.admin-table.tags-table th:nth-child(4),
+.admin-table.tags-table td:nth-child(4) {
+    width: 10%;
+    text-align: center !important;
+}
+
+.admin-table.tags-table th:nth-child(5),
+.admin-table.tags-table td:nth-child(5) {
+    width: 25%;
+    text-align: right !important;
+}
+
+.admin-table.tags-table td:first-child {
+    max-width: none;
+    overflow: visible;
+    text-overflow: clip;
+    white-space: normal;
+    width: auto;
+}
+
+.admin-table.tags-table code {
+    font-size: 0.85rem;
+    padding: 0.25rem 0.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
 }

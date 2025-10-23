@@ -6,6 +6,15 @@ $router = new Router();
 $router->get('/', 'home.php');
 $router->get('/posts/{slug}', 'posts/show.php');
 $router->get('/category/{slug}', 'categories/show.php'); // Yeni eklenen kategori yolu
+$router->get('/tags', 'tags/index.php');
+$router->get('/tag/{slug}', 'tags/show.php');
+$router->get('/arsiv', 'archive/index.php');
+$router->get('/arsiv/{year}', 'archive/index.php');
+$router->get('/arsiv/{year}/{month}', 'archive/index.php');
+$router->get('/search', 'search/index.php');
+$router->get('/feed', 'feed.php');
+$router->get('/rss', 'feed.php');
+$router->get('/hakkimda', 'about/index.php');
 $router->get('/sitemap.xml', 'sitemap.php');
 $router->get('/contact', 'contact/create.php');
 $router->post('/contact', 'contact/store.php');
@@ -22,6 +31,22 @@ $router->delete('/admin/posts/{id}', 'posts/destroy.php');
 $router->get('/admin/messages', 'admin/messages/index.php');
 $router->get('/admin/messages/{id}', 'admin/messages/show.php');
 $router->post('/admin/messages/delete', 'admin/messages/destroy.php');
+
+// Admin - Kategori Yönetimi
+$router->get('/admin/categories', 'admin/categories/index.php');
+$router->get('/admin/categories/create', 'admin/categories/create.php');
+$router->post('/admin/categories', 'admin/categories/store.php');
+$router->get('/admin/categories/edit/{id}', 'admin/categories/edit.php');
+$router->patch('/admin/categories/{id}', 'admin/categories/update.php');
+$router->delete('/admin/categories/{id}', 'admin/categories/destroy.php');
+
+// Admin - Etiket Yönetimi
+$router->get('/admin/tags', 'admin/tags/index.php');
+$router->get('/admin/tags/create', 'admin/tags/create.php');
+$router->post('/admin/tags', 'admin/tags/store.php');
+$router->get('/admin/tags/edit/{id}', 'admin/tags/edit.php');
+$router->patch('/admin/tags/{id}', 'admin/tags/update.php');
+$router->delete('/admin/tags/{id}', 'admin/tags/destroy.php');
 
 // Admin - Giriş/Çıkış
 $router->get('/login', 'auth/create.php');
