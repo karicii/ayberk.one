@@ -1,8 +1,8 @@
-,<?php require BASE_PATH . '/templates/partials/header.php'; ?>
+<?php require BASE_PATH . '/templates/partials/header.php'; ?>
 
 <section class="about-hero">
-    <span class="about-badge">Hakkımda</span>
-    <h1>Merhaba, ben Ayberk Arıcı.</h1>
+    <span class="about-badge"><?= t('about_badge') ?></span>
+    <h1><?= t('about_greeting') ?></h1>
     <p class="about-highlight"><?= htmlspecialchars($highlight) ?></p>
     <div class="about-hero-meta">
         <?php foreach ($focusAreas as $area): ?>
@@ -21,7 +21,7 @@
 </section>
 
 <section class="about-section">
-    <h2>Şu anda ne üzerinde çalışıyorum?</h2>
+    <h2><?= t('about_now_title') ?></h2>
     <div class="about-focus-list">
         <?php foreach ($now as $item): ?>
             <div class="about-focus-item">
@@ -32,7 +32,7 @@
 </section>
 
 <section class="about-section">
-    <h2>Kariyer yolculuğu</h2>
+    <h2><?= t('about_journey_title') ?></h2>
     <div class="about-timeline">
         <?php foreach ($timeline as $entry): ?>
             <div class="about-timeline-item">
@@ -45,7 +45,7 @@
 </section>
 
 <section class="about-section">
-    <h2>Çalışma ilkelerim</h2>
+    <h2><?= t('about_principles_title') ?></h2>
     <div class="about-values-grid">
         <?php foreach ($values as $value): ?>
             <article class="about-value">
@@ -57,7 +57,7 @@
 </section>
 
 <section class="about-section">
-    <h2>Takım çantam</h2>
+    <h2><?= t('about_toolbox_title') ?></h2>
     <div class="about-toolbox">
         <?php foreach ($toolbox as $group): ?>
             <div class="about-toolbox-card">
@@ -74,10 +74,10 @@
 
 <section class="about-cta">
     <div class="about-cta-content">
-        <h2>Beraber çalışalım mı?</h2>
-        <p>Yeni bir ürün fikriniz, mevcut SaaS uygulamanız ya da AI ile otomatikleştirmek istediğiniz süreçler varsa tanışalım.</p>
+        <h2><?= t('about_cta_title') ?></h2>
+        <p><?= t('about_cta_desc') ?></p>
         <a class="button button-primary" href="/contact">
-            <span>İletişim kur</span>
+            <span><?= t('about_cta_button') ?></span>
         </a>
     </div>
 </section>

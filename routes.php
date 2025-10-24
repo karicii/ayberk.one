@@ -17,6 +17,7 @@ $router->get('/notes/{slug}', 'notes/show.php');
 $router->get('/feed', 'feed.php');
 $router->get('/rss', 'feed.php');
 $router->get('/hakkimda', 'about/index.php');
+$router->get('/aboutme', 'about/index.php');
 $router->get('/sitemap.xml', 'sitemap.php');
 $router->get('/contact', 'contact/create.php');
 $router->post('/contact', 'contact/store.php');

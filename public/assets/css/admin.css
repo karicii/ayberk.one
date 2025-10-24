@@ -649,6 +649,28 @@ body.login-page-body {
     flex-direction: column;
 }
 
+.stat-label {
+    font-size: 0.875rem;
+    color: var(--color-secondary);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    line-height: 1.2;
+}
+
+.stat-value.stat-success {
+    color: #10b981;
+}
+
+.stat-value.stat-muted {
+    color: var(--color-secondary);
+}
+
 .stat-number {
     font-size: 1.75rem;
     font-weight: 600;

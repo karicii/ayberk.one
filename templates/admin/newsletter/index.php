@@ -1,30 +1,30 @@
-<?php require BASE_PATH . '/templates/admin/partials/header.php'; ?>
+<?php require BASE_PATH . '/templates/partials/admin_header.php'; ?>
 
-<div class="admin-header">
+<div class="content-header">
     <h1>Bülten Aboneleri</h1>
 </div>
 
-<div class="stats-grid">
-    <div class="stat-card">
-        <div class="stat-label">Toplam Abone</div>
-        <div class="stat-value"><?= $stats['total'] ?></div>
+<div class="content-panel">
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-label">Toplam Abone</div>
+            <div class="stat-value"><?= $stats['total'] ?></div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Aktif Abone</div>
+            <div class="stat-value stat-success"><?= $stats['active'] ?></div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Abonelikten Çıkan</div>
+            <div class="stat-value stat-muted"><?= $stats['unsubscribed'] ?></div>
+        </div>
     </div>
-    <div class="stat-card">
-        <div class="stat-label">Aktif Abone</div>
-        <div class="stat-value stat-success"><?= $stats['active'] ?></div>
-    </div>
-    <div class="stat-card">
-        <div class="stat-label">Abonelikten Çıkan</div>
-        <div class="stat-value stat-muted"><?= $stats['unsubscribed'] ?></div>
-    </div>
-</div>
 
-<?php if (empty($subscribers)): ?>
-    <div class="empty-state">
-        <p>Henüz hiç abone bulunmuyor.</p>
-    </div>
-<?php else: ?>
-    <div class="table-container">
+    <?php if (empty($subscribers)): ?>
+        <div class="empty-state">
+            <p>Henüz hiç abone bulunmuyor.</p>
+        </div>
+    <?php else: ?>
         <table class="admin-table">
             <thead>
                 <tr>
@@ -33,7 +33,7 @@
                     <th style="width: 15%">Durum</th>
                     <th style="width: 15%">Abone Tarihi</th>
                     <th style="width: 15%">IP Adresi</th>
-                    <th style="width: 25%">İşlemler</th>
+                    <th class="actions-header">İşlemler</th>
                 </tr>
             </thead>
             <tbody>
@@ -64,29 +64,33 @@
                         <td>
                             <small class="text-muted"><?= htmlspecialchars($subscriber['ip_address'] ?? 'N/A') ?></small>
                         </td>
-                        <td>
-                            <div class="action-buttons">
-                                <?php if ($subscriber['status'] === 'unsubscribed'): ?>
-                                    <form method="POST" action="/admin/newsletter/reactivate" style="display:inline;">
-                                        <input type="hidden" name="_method" value="PATCH">
-                                        <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
-                                        <input type="hidden" name="id" value="<?= $subscriber['id'] ?>">
-                                        <button type="submit" class="btn btn-sm btn-success">Yeniden Aktif Et</button>
-                                    </form>
-                                <?php endif; ?>
-                                <form method="POST" action="/admin/newsletter/delete" style="display:inline;" onsubmit="return confirm('Bu aboneyi silmek istediğinizden emin misiniz?');">
-                                    <input type="hidden" name="_method" value="DELETE">
+                        <td class="actions">
+                            <?php if ($subscriber['status'] === 'unsubscribed'): ?>
+                                <form method="POST" action="/admin/newsletter/reactivate" style="display:inline;">
+                                    <input type="hidden" name="_method" value="PATCH">
                                     <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
                                     <input type="hidden" name="id" value="<?= $subscriber['id'] ?>">
-                                    <button type="submit" class="btn btn-sm btn-danger">Sil</button>
+                                    <button type="submit" class="button button-primary" title="Yeniden Aktif Et">
+                                        <i data-lucide="check-circle"></i>
+                                        <span>Aktif Et</span>
+                                    </button>
                                 </form>
-                            </div>
+                            <?php endif; ?>
+                            <form method="POST" action="/admin/newsletter/delete" style="display:inline;" onsubmit="return confirm('Bu aboneyi silmek istediğinizden emin misiniz?');">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
+                                <input type="hidden" name="id" value="<?= $subscriber['id'] ?>">
+                                <button type="submit" class="button button-delete" title="Sil">
+                                    <i data-lucide="trash-2"></i>
+                                    <span>Sil</span>
+                                </button>
+                            </form>
                         </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
-    </div>
-<?php endif; ?>
+    <?php endif; ?>
+</div>
 
-<?php require BASE_PATH . '/templates/admin/partials/footer.php'; ?>
+<?php require BASE_PATH . '/templates/partials/admin_footer.php'; ?>

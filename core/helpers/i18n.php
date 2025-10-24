@@ -59,6 +59,17 @@ function t($key) {
             // AI Translate
             'ai_summarize_title' => 'Bu İçeriği Yapay Zekâ (AI) ile Özetleyin:',
             'ai_prompt' => '%s adresindeki makaleyi kapsamlı bir şekilde özetle ve ana başlıklarını çıkar',
+            
+            // About Page
+            'about_badge' => 'Hakkımda',
+            'about_greeting' => 'Merhaba, ben Ayberk Arıcı.',
+            'about_now_title' => 'Şu anda ne üzerinde çalışıyorum?',
+            'about_journey_title' => 'Kariyer yolculuğu',
+            'about_principles_title' => 'Çalışma ilkelerim',
+            'about_toolbox_title' => 'Takım çantam',
+            'about_cta_title' => 'Beraber çalışalım mı?',
+            'about_cta_desc' => 'Yeni bir ürün fikriniz, mevcut SaaS uygulamanız ya da AI ile otomatikleştirmek istediğiniz süreçler varsa tanışalım.',
+            'about_cta_button' => 'İletişim kur',
         ],
         'en' => [
             // Navigation
@@ -97,6 +108,17 @@ function t($key) {
             // AI Translate
             'ai_summarize_title' => 'Summarize This Content with AI:',
             'ai_prompt' => 'Summarize the article at %s comprehensively and extract the main points',
+            
+            // About Page
+            'about_badge' => 'About Me',
+            'about_greeting' => 'Hello, I\'m Ayberk Arıcı.',
+            'about_now_title' => 'What am I currently working on?',
+            'about_journey_title' => 'Career Journey',
+            'about_principles_title' => 'Work Principles',
+            'about_toolbox_title' => 'My Toolbox',
+            'about_cta_title' => 'Let\'s work together?',
+            'about_cta_desc' => 'If you have a new product idea, an existing SaaS application, or processes you want to automate with AI, let\'s connect.',
+            'about_cta_button' => 'Get in Touch',
         ],
         'fr' => [
             // Navigation
@@ -135,6 +157,17 @@ function t($key) {
             // AI Translate
             'ai_summarize_title' => 'Résumez ce Contenu avec l\'IA:',
             'ai_prompt' => 'Résumez l\'article à %s de manière complète et extrayez les points principaux',
+            
+            // About Page
+            'about_badge' => 'À Propos',
+            'about_greeting' => 'Bonjour, je suis Ayberk Arıcı.',
+            'about_now_title' => 'Sur quoi je travaille actuellement?',
+            'about_journey_title' => 'Parcours Professionnel',
+            'about_principles_title' => 'Mes Principes de Travail',
+            'about_toolbox_title' => 'Ma Boîte à Outils',
+            'about_cta_title' => 'Travaillons ensemble?',
+            'about_cta_desc' => 'Si vous avez une nouvelle idée de produit, une application SaaS existante ou des processus que vous souhaitez automatiser avec l\'IA, connectons-nous.',
+            'about_cta_button' => 'Contactez-moi',
         ]
     ];
     

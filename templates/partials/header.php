@@ -49,7 +49,7 @@
                 <ul>
                     <li><a href="/"><?= t('home') ?></a></li>
                     <li><a href="/notes"><?= t('notes') ?></a></li>
-                    <li><a href="/hakkimda"><?= t('about') ?></a></li>
+                    <li><a href="<?= get_lang() === 'tr' ? '/hakkimda' : '/aboutme' ?>"><?= t('about') ?></a></li>
                     <li><a href="/contact"><?= t('contact') ?></a></li>
                 </ul>
             </nav>
