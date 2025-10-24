@@ -25,6 +25,7 @@
                 <a href="/admin">Yazılar</a>
                 <a href="/admin/categories">Kategoriler</a>
                 <a href="/admin/tags">Etiketler</a>
+                <a href="/admin/notes">Notlar</a>
                 <a href="/admin/newsletter">Bülten</a>
                 <a href="/admin/messages">Mesajlar</a>
                 <form method="POST" action="/logout">

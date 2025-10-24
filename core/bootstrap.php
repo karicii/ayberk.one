@@ -23,6 +23,7 @@ secure_session_start();
 generate_csrf_token();
 
 require BASE_PATH . '/core/functions.php';
+require BASE_PATH . '/core/helpers/i18n.php';
 
 set_security_headers(); 
 

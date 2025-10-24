@@ -104,9 +104,9 @@ function createTableOfContents() {
         font-weight: 600;
         margin-bottom: 1.2rem;
         padding-bottom: 0.5rem;
-        border-bottom: 1px solid #333;
+        border-bottom: 1px solid var(--color-border);
         text-align: left;
-        color: #ffffff;
+        color: var(--color-primary);
     `;
     tocContainer.appendChild(tocTitle);
 
@@ -135,7 +135,7 @@ function createTableOfContents() {
         link.href = '#' + heading.id;
         link.textContent = heading.textContent;
         link.style.cssText = `
-            color: #a0a0a0;
+            color: var(--color-secondary);
             text-decoration: none;
             display: block;
             padding: 0.4rem 0;
@@ -163,26 +163,26 @@ function createTableOfContents() {
 
                 // Tüm linklerin aktif durumunu temizle
                 document.querySelectorAll('#toc-container a').forEach(a => {
-                    a.style.color = '#a0a0a0';
+                    a.style.color = 'var(--color-secondary)';
                     a.style.fontWeight = 'normal';
                 });
 
                 // Bu linki aktif yap
-                link.style.color = '#ffffff';
-                link.style.fontWeight = '500';
+                link.style.color = 'var(--color-primary)';
+                link.style.fontWeight = '600';
             }
         });
 
         // Hover efekti
         link.addEventListener('mouseover', () => {
-            if (link.style.fontWeight !== '500') {
-                link.style.color = '#ffffff';
+            if (link.style.fontWeight !== '600') {
+                link.style.color = 'var(--color-primary)';
             }
         });
 
         link.addEventListener('mouseout', () => {
-            if (link.style.fontWeight !== '500') {
-                link.style.color = '#a0a0a0';
+            if (link.style.fontWeight !== '600') {
+                link.style.color = 'var(--color-secondary)';
             }
         });
 

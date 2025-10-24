@@ -8,7 +8,7 @@ require(BASE_PATH . '/templates/partials/header.php');
 
 <main class="container">
     <div class="contact-form-container">
-        <h1>Bana Ulaşın</h1>
+        <h1><?= t('contact_title') ?></h1>
 
         <?php // --- BAŞARI MESAJI BÖLÜMÜ --- ?>
         <?php if (isset($success_message) && $success_message) : ?>
@@ -30,17 +30,17 @@ require(BASE_PATH . '/templates/partials/header.php');
             <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token']; ?>">
             
             <div class="form-group">
-                <label for="name">Adınız Soyadınız</label>
+                <label for="name"><?= t('name') ?></label>
                 <input type="text" id="name" name="name" value="<?= $old['name'] ?? '' ?>" required>
             </div>
             
             <div class="form-group">
-                <label for="email">E-posta Adresiniz</label>
+                <label for="email"><?= t('email') ?></label>
                 <input type="email" id="email" name="email" value="<?= $old['email'] ?? '' ?>" required>
             </div>
             
             <div class="form-group">
-                <label for="message">Mesajınız</label>
+                <label for="message"><?= t('message') ?></label>
                 <textarea id="message" name="message" rows="6" required><?= $old['message'] ?? '' ?></textarea>
             </div>
             
@@ -48,7 +48,7 @@ require(BASE_PATH . '/templates/partials/header.php');
             <div class="cf-turnstile" data-sitekey="<?= htmlspecialchars($turnstileSiteKey) ?>" data-theme="dark"></div>
             <?php endif; ?>
             
-            <button type="submit" class="button button-primary" style="width: 100%; padding: 12px; margin-top: 1.5rem;">Gönder</button>
+            <button type="submit" class="button button-primary" style="width: 100%; padding: 12px; margin-top: 1.5rem;"><?= t('send') ?></button>
         </form>
     </div>
 </main>

@@ -4,8 +4,8 @@
         <div class="newsletter-section">
             <div class="newsletter-container">
                 <div class="newsletter-content">
-                    <h3>Bültene Abone Ol</h3>
-                    <p>Yeni yazılardan haberdar olmak için e-posta adresinizi bırakın.</p>
+                    <h3><?= t('newsletter_title') ?></h3>
+                    <p><?= t('newsletter_subtitle') ?></p>
                 </div>
                 <form action="/newsletter/subscribe" method="POST" class="newsletter-form">
                     <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?? '' ?>">
@@ -13,11 +13,11 @@
                         <input 
                             type="email" 
                             name="email" 
-                            placeholder="E-posta adresiniz" 
+                            placeholder="<?= t('newsletter_email') ?>" 
                             required
-                            aria-label="E-posta adresi"
+                            aria-label="<?= t('newsletter_email') ?>"
                         >
-                        <button type="submit">Abone Ol</button>
+                        <button type="submit"><?= t('newsletter_subscribe') ?></button>
                     </div>
                 </form>
             </div>
@@ -25,10 +25,10 @@
 
         <footer class="site-footer">
             <div class="footer-content">
-                <p>&copy; <?= date('Y') ?> Ayberk Arıcı. Tüm hakları saklıdır.</p>
+                <p>&copy; <?= date('Y') ?> Ayberk Arıcı. <?= t('all_rights') ?></p>
                 <nav class="social-nav">
                     <ul>
-                        <li><a href="/arsiv">Arşiv</a></li>
+                        <li><a href="/arsiv"><?= t('archive') ?></a></li>
                         <li><a href="/feed" target="_blank" rel="noopener noreferrer">RSS</a></li>
                         <li><a href="https://github.com/karicii" target="_blank" rel="noopener noreferrer">GitHub</a></li>
                         <li><a href="https://linkedin.com/in/karici" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>

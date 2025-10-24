@@ -1,4 +1,4 @@
-<?php require BASE_PATH . '/templates/partials/header.php'; ?>
+,<?php require BASE_PATH . '/templates/partials/header.php'; ?>
 
 <section class="about-hero">
     <span class="about-badge">Hakkımda</span>

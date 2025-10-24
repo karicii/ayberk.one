@@ -12,6 +12,8 @@ $router->get('/arsiv', 'archive/index.php');
 $router->get('/arsiv/{year}', 'archive/index.php');
 $router->get('/arsiv/{year}/{month}', 'archive/index.php');
 $router->get('/search', 'search/index.php');
+$router->get('/notes', 'notes/index.php');
+$router->get('/notes/{slug}', 'notes/show.php');
 $router->get('/feed', 'feed.php');
 $router->get('/rss', 'feed.php');
 $router->get('/hakkimda', 'about/index.php');
@@ -22,6 +24,9 @@ $router->post('/contact', 'contact/store.php');
 // Newsletter
 $router->post('/newsletter/subscribe', 'newsletter/subscribe.php');
 $router->get('/newsletter/unsubscribe', 'newsletter/unsubscribe.php');
+
+// API
+$router->post('/api/set-language', 'api/set-language.php');
 
 // Admin - Yazı Yönetimi
 $router->get('/admin', 'admin/index.php'); 
@@ -56,6 +61,14 @@ $router->delete('/admin/tags/{id}', 'admin/tags/destroy.php');
 $router->get('/admin/newsletter', 'admin/newsletter/index.php');
 $router->patch('/admin/newsletter/reactivate', 'admin/newsletter/reactivate.php');
 $router->delete('/admin/newsletter/delete', 'admin/newsletter/delete.php');
+
+// Admin - Not Yönetimi
+$router->get('/admin/notes', 'admin/notes/index.php');
+$router->get('/admin/notes/create', 'admin/notes/create.php');
+$router->post('/admin/notes', 'admin/notes/store.php');
+$router->get('/admin/notes/edit/{id}', 'admin/notes/edit.php');
+$router->patch('/admin/notes/{id}', 'admin/notes/update.php');
+$router->delete('/admin/notes/{id}', 'admin/notes/destroy.php');
 
 // Admin - Giriş/Çıkış
 $router->get('/login', 'auth/create.php');

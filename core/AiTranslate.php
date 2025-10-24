@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . '/helpers/i18n.php';
+
 class AiTranslate
 {
     public static function generateButtons(string $postTitle, string $postSlug, string $baseUrl): string
@@ -8,28 +10,34 @@ class AiTranslate
         $encodedUrl = urlencode($postUrl);
         $encodedTitle = urlencode($postTitle);
         
+        // Get current language
+        $lang = get_lang();
+        
+        // Generate language-specific prompt
+        $prompt = sprintf(t('ai_prompt'), $postUrl);
+        
         $buttons = [
             [
                 'name' => 'ChatGPT',
-                'url' => "https://chat.openai.com/?q=" . urlencode("$postUrl adresindeki makaleyi kapsamlı bir şekilde özetle ve ana başlıklarını çıkar")
+                'url' => "https://chat.openai.com/?q=" . urlencode($prompt)
             ],
             [
                 'name' => 'Grok',
-                'url' => "https://x.com/i/grok?q=" . urlencode("Bu makaleyi özetle: $postUrl")
+                'url' => "https://x.com/i/grok?q=" . urlencode($prompt)
             ],
             [
                 'name' => 'Perplexity',
-                'url' => "https://www.perplexity.ai/?q=" . urlencode("$postUrl linkindeki yazıyı özetle")
+                'url' => "https://www.perplexity.ai/?q=" . urlencode($prompt)
             ],
             [
                 'name' => 'Claude.ai',
-                'url' => "https://claude.ai/new?q=" . urlencode("Bu makaleyi özetle: $postUrl")
+                'url' => "https://claude.ai/new?q=" . urlencode($prompt)
             ]
         ];
         
         $html = '<div class="ai-translate-section">';
         $html .= '<div class="ai-translate-header">';
-        $html .= '<span class="ai-translate-title">Bu İçeriği Yapay Zekâ (AI) ile Özetleyin:</span>';
+        $html .= '<span class="ai-translate-title">' . htmlspecialchars(t('ai_summarize_title')) . '</span>';
         $html .= '</div>';
         $html .= '<div class="ai-translate-buttons">';
         

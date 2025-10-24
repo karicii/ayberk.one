@@ -1,7 +1,7 @@
 <?php require BASE_PATH . '/templates/admin/partials/header.php'; ?>
 
 <div class="admin-header">
-    <h1>📧 Bülten Aboneleri</h1>
+    <h1>Bülten Aboneleri</h1>
 </div>
 
 <div class="stats-grid">
