@@ -1,13 +1,7 @@
 <?php
 
-// Landing page'i doğrudan serve et
-$landerPath = BASE_PATH . '/lander/index.html';
+$pageTitle = 'Ayberk.one - Profesyoneller İçin Düşünce Liderliği Platformu';
+$pageDescription = 'Finans, teknoloji ve girişimcilik dünyasından profesyonellerin fikirlerini paylaştığı yeni nesil platform.';
 
-if (file_exists($landerPath)) {
-    readfile($landerPath);
-    exit;
-}
-
-// Fallback
-http_response_code(404);
-echo "Landing page not found.";
+// Landing page template'ini göster
+require BASE_PATH . '/lander/index.html';
