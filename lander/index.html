@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayberk.one - Profesyoneller İçin Düşünce Liderliği Platformu</title>
+    <meta name="description" content="Finans, teknoloji ve girişimcilik dünyasından profesyonellerin fikirlerini paylaştığı yeni nesil platform.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --gradient-4: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            --color-dark: #0f0f1a;
+            --color-dark-2: #1a1a2e;
+            --color-accent: #667eea;
+            --color-accent-2: #764ba2;
+            --color-text: #e5e7eb;
+            --color-text-muted: #9ca3af;
+            --spacing: 1rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--color-dark);
+            color: var(--color-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .background-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: var(--color-dark);
+        }
+
+        .gradient-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.3;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .orb-1 {
+            width: 500px;
+            height: 500px;
+            background: var(--gradient-1);
+            top: -200px;
+            right: -200px;
+            animation-delay: 0s;
+        }
+
+        .orb-2 {
+            width: 400px;
+            height: 400px;
+            background: var(--gradient-2);
+            bottom: -100px;
+            left: -100px;
+            animation-delay: 5s;
+        }
+
+        .orb-3 {
+            width: 300px;
+            height: 300px;
+            background: var(--gradient-3);
+            top: 50%;
+            left: 50%;
+            animation-delay: 10s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(15, 15, 26, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--color-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-accent);
+        }
+
+        .cta-button {
+            padding: 0.75rem 1.5rem;
+            background: var(--gradient-1);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 8rem 2rem 4rem;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(102, 126, 234, 0.1);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-radius: 50px;
+            color: var(--color-accent);
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #ffffff 0%, #667eea 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 0.6s ease-out 0.2s backwards;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--color-text-muted);
+            margin-bottom: 3rem;
+            line-height: 1.8;
+            animation: fadeInUp 0.6s ease-out 0.4s backwards;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.6s ease-out 0.6s backwards;
+        }
+
+        .button {
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .button-primary {
+            background: var(--gradient-1);
+            color: white;
+            border: none;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .button-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
+        }
+
+        .button-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--color-text);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .button-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Features Section */
+        .section {
+            padding: 6rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: var(--gradient-1);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .section-description {
+            font-size: 1.125rem;
+            color: var(--color-text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-1);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--color-accent);
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.2);
+        }
+
+        .feature-card:hover::before {
+            opacity: 0.05;
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-1);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .feature-card:nth-child(2) .feature-icon {
+            background: var(--gradient-2);
+        }
+
+        .feature-card:nth-child(3) .feature-icon {
+            background: var(--gradient-3);
+        }
+
+        .feature-card:nth-child(4) .feature-icon {
+            background: var(--gradient-4);
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .feature-card p {
+            color: var(--color-text-muted);
+            line-height: 1.8;
+            position: relative;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: rgba(255, 255, 255, 0.02);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: var(--color-text-muted);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 8rem 2rem;
+            position: relative;
+        }
+
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            padding: 4rem 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-1);
+            opacity: 0.05;
+        }
+
+        .cta-content h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .cta-content p {
+            font-size: 1.125rem;
+            color: var(--color-text-muted);
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: var(--color-text-muted);
+        }
+
+        footer a {
+            color: var(--color-accent);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 6rem 1.5rem 3rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .button {
+                width: 100%;
+            }
+
+            .section {
+                padding: 4rem 1.5rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+
+            .cta-content {
+                padding: 3rem 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-gradient">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+    </div>
+
+    <nav>
+        <div class="nav-container">
+            <div class="logo">AYBERK.ONE</div>
+            <ul class="nav-links">
+                <li><a href="#features">Özellikler</a></li>
+                <li><a href="#stats">İstatistikler</a></li>
+                <li><a href="/blog">Blog</a></li>
+            </ul>
+            <button class="cta-button">Hemen Başla</button>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <span class="hero-badge">✨ Yeni Nesil Platform</span>
+            <h1>Profesyoneller İçin Düşünce Liderliği Platformu</h1>
+            <p>Finans, teknoloji ve girişimcilik dünyasından profesyonellerin ve liderlerin fikirlerini paylaştığı, niş bir komünite. Medium'un karmaşasından, LinkedIn'in gürültüsünden uzak.</p>
+            <div class="hero-buttons">
+                <a href="#" class="button button-primary">Ücretsiz Başla</a>
+                <a href="#features" class="button button-secondary">Nasıl Çalışır?</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="features">
+        <div class="section-header">
+            <span class="section-badge">ÖZELLİKLER</span>
+            <h2 class="section-title">Neden Ayberk.one?</h2>
+            <p class="section-description">Yazarlar için tasarlandı. Okuyucular için optimize edildi.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">✍️</div>
+                <h3>Sade Yazma Deneyimi</h3>
+                <p>Markdown desteği, kod blokları ve özel bileşenlerle odaklanmayı kaybetmeden yazın. Dikkatinizi dağıtan hiçbir şey yok.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3>Niş Kitle</h3>
+                <p>Beyaz yaka profesyonelleri, girişimciler ve teknoloji liderleri. İçerik kalitesi doğal olarak yükselir.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🚀</div>
+                <h3>Keşfedilebilirlik</h3>
+                <p>Öne çıkan yazılar algoritması ile değerli içerikleriniz doğru kişilere ulaşır. Paywall yok, sınır yok.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💎</div>
+                <h3>Kişisel Marka</h3>
+                <p>ayberk.one/@kullaniciadi adresiniz dijital kartvizitiniz olur. Profesyonel bir kimlik oluşturun.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section stats-section" id="stats">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">500K+</div>
+                <div class="stat-label">Aylık Okuyucu</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">1,200+</div>
+                <div class="stat-label">Aktif Yazar</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">10K+</div>
+                <div class="stat-label">Yayınlanan İçerik</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">%0</div>
+                <div class="stat-label">Paywall</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>Hikayenizi paylaşmaya hazır mısınız?</h2>
+            <p>Binlerce profesyonel zaten burada. Siz de katılın ve fikirlerinizi dünyayla paylaşın.</p>
+            <a href="#" class="button button-primary">Ücretsiz Hesap Oluştur</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Ayberk.one | Tüm hakları saklıdır. | <a href="/privacy">Gizlilik</a> · <a href="/terms">Şartlar</a></p>
+    </footer>
+</body>
+</html>

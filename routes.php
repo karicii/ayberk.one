@@ -4,6 +4,7 @@ $router = new Router();
 
 // Genel Sayfalar
 $router->get('/', 'home.php');
+$router->get('/landing', 'lander/index.php');
 $router->get('/posts/{slug}', 'posts/show.php');
 $router->get('/category/{slug}', 'categories/show.php'); // Yeni eklenen kategori yolu
 $router->get('/tags', 'tags/index.php');
